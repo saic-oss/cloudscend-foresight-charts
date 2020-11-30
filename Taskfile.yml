@@ -1,0 +1,34 @@
+# https://taskfile.dev
+
+version: "2"
+
+tasks:
+  validate:
+    desc: Validate the pre-commit hooks
+    cmds:
+      - pre-commit install
+      - pre-commit run -a
+
+  test:
+    desc: Run automated tests
+    cmds:
+      - echo "Add your logic here"
+      - exit 1
+
+  secure:
+    desc: Run automated security checks
+    cmds:
+      - echo "Add your logic here"
+      - exit 1
+
+  deliver:
+    desc: Deliver artifact
+    cmds:
+      - echo "Add your logic here"
+      - exit 1
+
+  deploy:
+    desc: Deploy project
+    cmds:
+      - echo "Add your logic here"
+      - exit 1
