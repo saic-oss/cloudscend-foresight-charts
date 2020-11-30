@@ -1,0 +1,36 @@
+apiVersion: v1
+entries:
+  bar:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-30T17:39:23.511923-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 64ae9d2384c4be9486c4835cec00d3c1158442484fb26e257c28a2182f14c04d
+    name: bar
+    type: application
+    urls:
+    - https://github.com/RothAndrew/charts-example/releases/download/bar-0.1.0/bar-0.1.0.tgz
+    version: 0.1.0
+  foo:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-30T17:39:23.580432-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 4b2ac8212c828dc72ffc077b2cdf265abd11f4c36d7c7ed3d470cef1ccdae9c8
+    name: foo
+    type: application
+    urls:
+    - https://github.com/RothAndrew/charts-example/releases/download/foo-0.1.0/foo-0.1.0.tgz
+    version: 0.1.0
+  hello-world:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-30T17:39:23.662692-05:00"
+    description: A Helm chart for Kubernetes
+    digest: de8409d725208ad165e8253185b80c26c9eaae038e957f8b925f40c9e1ded2e0
+    name: hello-world
+    type: application
+    urls:
+    - https://github.com/RothAndrew/charts-example/releases/download/hello-world-0.1.0/hello-world-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-11-30T17:39:23.374131-05:00"
