@@ -1,34 +1,94 @@
 # https://taskfile.dev
 
-version: "2"
+version: "3"
 
 tasks:
   validate:
     desc: Validate the pre-commit hooks
     cmds:
+      - task: validate:precommit
+      - task: validate:lint
+
+  validate:precommit:
+    desc: Validates that pre-commit hooks were run
+    cmds:
       - pre-commit install
       - pre-commit run -a
+
+  validate:lint:
+    desc: Runs helm lint on all charts
+    dir: charts
+    cmds:
+      - find ./* -type d -mindepth 0 -maxdepth 0 -print0 | xargs -0 helm lint --strict
 
   test:
     desc: Run automated tests
     cmds:
-      - echo "Add your logic here"
-      - exit 1
+      - task: chart-releaser:package
 
   secure:
     desc: Run automated security checks
     cmds:
-      - echo "Add your logic here"
-      - exit 1
+      - echo "N/A"
 
   deliver:
     desc: Deliver artifact
     cmds:
-      - echo "Add your logic here"
-      - exit 1
+      - task: chart-releaser:package
+      - task: chart-releaser:upload
+      - task: chart-releaser:indexAndPush
 
   deploy:
     desc: Deploy project
     cmds:
-      - echo "Add your logic here"
-      - exit 1
+      - echo "N/A"
+
+  chart-releaser:package:
+    desc: Package all charts, then delete ones that already have been uploaded
+    cmds:
+      - rm -rf .cr-release-packages
+      - helm-cr package charts/*
+      - |
+        git fetch --tags
+        for package in .cr-release-packages/*.tgz; do
+          filename=$(basename -- "$package")
+          filenameWithoutExt="${filename%.*}"
+          if git rev-parse "$filenameWithoutExt" >/dev/null 2>&1; then
+            echo "Deleting package '$filenameWithoutExt' since it has already been uploaded."
+            rm $package
+          fi
+        done
+
+  chart-releaser:upload:
+    desc: Upload charts to GitHub Releases
+    vars:
+      token: '{{ coalesce .CR_TOKEN "<no value>" }}'
+    preconditions:
+      - sh: test "{{.token}}" != "<no value>"
+        msg: "CR_TOKEN not set"
+    cmds:
+      - |
+        if [ -n "$(find ".cr-release-packages" -maxdepth 0 -type d -empty 2>/dev/null)" ]; then
+            echo "No action taken. There was nothing to upload"
+        else
+            helm-cr upload --commit "$(git rev-parse main)"
+        fi
+
+  chart-releaser:indexAndPush:
+    desc: Create and push index.yaml to gh-pages branch
+    vars:
+      owner: '{{ coalesce .CR_OWNER "<no value>" }}'
+      gitRepo: '{{ coalesce .CR_GIT_REPO "<no value>" }}'
+      chartsRepo: '{{ coalesce .CR_CHARTS_REPO "<no value>" }}'
+    preconditions:
+      - sh: test "{{.owner}}" != "<no value>"
+        msg: "CR_OWNER not set"
+      - sh: test "{{.gitRepo}}" != "<no value>"
+        msg: "CR_GIT_REPO not set"
+      - sh: test "{{.chartsRepo}}" != "<no value>"
+        msg: "CR_CHARTS_REPO not set"
+    cmds:
+      - |
+        rm -rf .cr-index \
+        && mkdir .cr-index \
+        && helm-cr index --push

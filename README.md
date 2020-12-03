@@ -1,18 +1,44 @@
-# template-repo
+# charts-example
 
-Template repository that has the necessary baseline files for a new repo
+## Prerequisites
 
-## Files
+- Unix-like OS
+- [chart-releaser](https://github.com/helm/chart-releaser) installed and available on the path as `helm-cr`. The recommended way to install chart-releaser is to use ASDF. `asdf plugin-add helm-cr https://github.com/Antiarchitect/asdf-helm-cr.git`
+- [pre-commit](https://pre-commit.com/)
+- [go-task](https://taskfile.dev)
 
-| File                        | Description                                                                                     |
-| --------------------------- | ----------------------------------------------------------------------------------------------- |
-| \.github/CODEOWNERS         | Used to automatically choose PR reviewers based on who owns the code                            |
-| \.github/stale\.yaml        | Config file for the Stale plugin                                                                |
-| \.editorconfig              | Shared code style config file                                                                   |
-| \.gitignore                 | Git ignore file                                                                                 |
-| \.pre\-commit\-config\.yaml | Config file for pre\-commit hooks\. Delete/comment out hooks you don't need                     |
-| \.prettierignore            | Prettier ignore file                                                                            |
-| \.remarkrc                  | Config file for remark\-lint which Codacy uses                                                  |
-| LICENSE                     | Project license \- Default is Apache 2\.0\. Get approval if you want to use a different license |
-| README\.md                  | Main README file that all repos need to have                                                    |
-| Taskfile\.yml               | Config file for Go\-Task\. We prefer Go\-Task over Make                                         |
+## Getting Started
+
+1. Fork/import this repository
+1. Delete the fake charts and add your real ones
+1. Follow the [Usage](#usage) section for details on how to package and deliver charts
+
+## Usage
+
+```sh
+# Validate everything to make sure nothing is screwed up
+task validate
+
+# Run tests
+task test
+
+# Package, push, and release new changes
+export CR_TOKEN='abc123abc123abc123abc123abc123abc123'
+export CR_OWNER='my-org'
+export CR_GIT_REPO='my-cool-repo'
+export CR_CHARTS_REPO='https://my-org.github.io/my-cool-repo'
+task deliver
+
+# Just package
+task chart-releaser:package
+
+# Just push
+task chart-releaser:upload
+
+# Just release
+task chart-releaser:indexAndPush
+```
+
+## Notes
+
+1. This project does not support signing charts at this time. It is something we are looking into doing in the future. Please let us know if creating signed charts is something you can't live without.

@@ -1,7 +1,8 @@
-# Change me! Andrew doesn't want to be the owner of everything!
-*                           @RothAndrew
+*                           @saic-oss/core
 
 # Don't change me! Compliance team is the owner of these files
 /.github/                   @saic-oss/compliance
-/Taskfile.yaml              @saic-oss/compliance
+/Taskfile.yml               @saic-oss/compliance
 /.pre-commit-config.yaml    @saic-oss/compliance
+/.remarkrc                  @saic-oss/compliance
+/LICENSE                    @saic-oss/compliance
