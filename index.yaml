@@ -3,6 +3,16 @@ entries:
   bar:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2020-12-03T10:18:56.554682-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 84e88838ac9d0497ca7aac108c9592da1a0808b2477f08ecc26b16bbd916b7a2
+    name: bar
+    type: application
+    urls:
+    - https://github.com/RothAndrew/charts-example/releases/download/bar-0.2.0/bar-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2020-11-30T17:39:23.511923-05:00"
     description: A Helm chart for Kubernetes
     digest: 64ae9d2384c4be9486c4835cec00d3c1158442484fb26e257c28a2182f14c04d
