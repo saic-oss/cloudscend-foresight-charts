@@ -24,6 +24,16 @@ entries:
   foo:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2020-12-04T15:47:08.275745451Z"
+    description: A Helm chart for Kubernetes
+    digest: 7d6310dc493d98f3c0bcc27371b758224517fb530afba8fbf6d6824957a880ff
+    name: foo
+    type: application
+    urls:
+    - https://github.com/saic-oss/charts-example/releases/download/foo-0.2.0/foo-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2020-12-04T10:22:45.445564-05:00"
     description: A Helm chart for Kubernetes
     digest: f8ab31e67f2ad224830eb506db41acc9030cf6b7c71a33f469d59bb039bcc2b1
