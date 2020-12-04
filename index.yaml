@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  bar:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-12-04T10:19:12.483266-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 78c71f3a0f05ca74b009460874a4ccf578eb7d04416ac47c57f66f2f4d2150b4
+    name: bar
+    type: application
+    urls:
+    - https://github.com/saic-oss/charts-example/releases/download/bar-0.4.0/bar-0.4.0.tgz
+    version: 0.4.0
+generated: "2020-12-04T10:19:12.270086-05:00"
