@@ -35,7 +35,9 @@ tasks:
     desc: Deliver artifact
     cmds:
       - task: chart-releaser:package
+      - task: chart-releaser:deleteAlreadyUploaded
       - task: chart-releaser:upload
+      - task: chart-releaser:package
       - task: chart-releaser:indexAndPush
 
   deploy:
@@ -48,6 +50,10 @@ tasks:
     cmds:
       - rm -rf .cr-release-packages
       - helm-cr package charts/*
+
+  chart-releaser:deleteAlreadyUploaded:
+    desc: Delete charts that have already been uploaded
+    cmds:
       - |
         git fetch --tags
         for package in .cr-release-packages/*.tgz; do
@@ -77,10 +83,16 @@ tasks:
   chart-releaser:indexAndPush:
     desc: Create and push index.yaml to gh-pages branch
     vars:
+      gitUsername: '{{ coalesce .GIT_USERNAME "<no value>" }}'
+      gitEmail: '{{ coalesce .GIT_EMAIL "<no value>" }}'
       owner: '{{ coalesce .CR_OWNER "<no value>" }}'
       gitRepo: '{{ coalesce .CR_GIT_REPO "<no value>" }}'
       chartsRepo: '{{ coalesce .CR_CHARTS_REPO "<no value>" }}'
     preconditions:
+      - sh: test "{{.gitUsername}}" != "<no value>"
+        msg: "GIT_USERNAME not set"
+      - sh: test "{{.gitEmail}}" != "<no value>"
+        msg: "GIT_EMAIL not set"
       - sh: test "{{.owner}}" != "<no value>"
         msg: "CR_OWNER not set"
       - sh: test "{{.gitRepo}}" != "<no value>"
@@ -89,6 +101,8 @@ tasks:
         msg: "CR_CHARTS_REPO not set"
     cmds:
       - |
-        rm -rf .cr-index \
+        git config user.name "{{.gitUsername}}" \
+        && git config user.email "{{.gitEmail}}" \
+        && rm -rf .cr-index \
         && mkdir .cr-index \
         && helm-cr index --push
