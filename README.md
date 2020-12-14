@@ -1,6 +1,6 @@
-# charts-example
+# sage-charts
 
-Example of a Helm Charts repository that uses chart-releaser to publish a public chart repo to GitHub Pages
+Helm Charts repository that uses chart-releaser to publish a public chart repo to GitHub Pages
 
 ## Prerequisites
 
@@ -22,12 +22,6 @@ docker run -it --rm \
 ```
 
 Anvil is also what we use as our CI runner.
-
-## Getting Started
-
-1. Fork/import this repository
-1. Delete the fake charts and add your real ones
-1. Follow the [Usage](#usage) section for details on how to package and deliver charts
 
 ## Usage
 
