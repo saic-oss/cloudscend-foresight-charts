@@ -1,0 +1,36 @@
+apiVersion: v1
+entries:
+  bar:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-12-14T21:31:31.087118671Z"
+    description: A Helm chart for Kubernetes
+    digest: 0627aaa96e5175a581d3f50d5ab567b80f8c2003e1c9c75c9f53670631021d1c
+    name: bar
+    type: application
+    urls:
+    - https://github.com/saic-oss/sage-charts/releases/download/bar-0.5.0/bar-0.5.0.tgz
+    version: 0.5.0
+  foo:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-12-14T21:31:31.154702557Z"
+    description: A Helm chart for Kubernetes
+    digest: bf206c6eb6f4743b5bbfbd004b8e11d572ae4c54635d03cf1b6cba6f1e5c6fd6
+    name: foo
+    type: application
+    urls:
+    - https://github.com/saic-oss/sage-charts/releases/download/foo-0.2.0/foo-0.2.0.tgz
+    version: 0.2.0
+  hello-world:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-12-14T21:31:31.237148538Z"
+    description: A Helm chart for Kubernetes
+    digest: 21c1037da9c151cf371eb9ca3e1e78deffd79d99b1f97020760b3612088cb8fb
+    name: hello-world
+    type: application
+    urls:
+    - https://github.com/saic-oss/sage-charts/releases/download/hello-world-0.1.0/hello-world-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-12-14T21:31:30.979856683Z"
