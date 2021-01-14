@@ -1,6 +1,6 @@
 # sage-charts
 
-Helm Charts repository that uses chart-releaser to publish a public chart repo to GitHub Pages
+Helm Charts repository for Sage.
 
 ## Prerequisites
 
