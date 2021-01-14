@@ -33,4 +33,15 @@ entries:
     urls:
     - https://github.com/saic-oss/sage-charts/releases/download/hello-world-0.1.0/hello-world-0.1.0.tgz
     version: 0.1.0
+  sage-frontend:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-01-14T21:12:17.985975891Z"
+    description: A Helm chart for Kubernetes
+    digest: cf1d72a3f579f831fe0ed6909b632c1887722e8dcccedb964bb42df370ea6481
+    name: sage-frontend
+    type: application
+    urls:
+    - https://github.com/saic-oss/sage-charts/releases/download/sage-frontend-1.0.0/sage-frontend-1.0.0.tgz
+    version: 1.0.0
 generated: "2020-12-14T21:31:30.979856683Z"
