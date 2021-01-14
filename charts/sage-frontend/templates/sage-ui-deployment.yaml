@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.name }}
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.containers.image }}
+          ports:
+          - containerPort: {{ .Values.containers.ports.containerPort }}
+          volumeMounts:
+            - mountPath: {{ .Values.containers.volumeMounts.mountPath }}
+              name: {{ .Values.containers.volumeMounts.name }}
+              readOnly: true
+              subPath: env.js
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: {{ .Values.name }}-config
+          name: {{ .Values.containers.volumeMounts.name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.name }}
