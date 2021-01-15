@@ -10,10 +10,10 @@ spec:
   gateways:
   - {{ .Values.ingress.gateways }}
   http:
-    - route:
-        - destination:
-            host: {{ .Values.name }}
-            port:
-              number: {{ .Values.ingress.port }}
-    - timeout: 60s
+  - timeout: 60s
+    route:
+    - destination:
+        host: {{ .Values.name }}
+        port:
+          number: {{ .Values.ingress.port }}
 {{- end }}
