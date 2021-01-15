@@ -1,0 +1,24 @@
+{{- if .Values.server.ingress.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Values.server.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  hosts:
+  - {{ quote .Values.server.ingress.host }}
+  gateways:
+  - {{ .Values.server.ingress.gateway }}
+  http:
+    - route:
+        - destination:
+            host: {{ .Values.server.name }}
+            port:
+              number: {{ .Values.server.container.port }}
+          headers:
+            response:
+              remove:
+              - X-Frame-Options
+              set:
+                location: http{{ if .Values.server.ingress.tls }}s{{ end }}://{{ .Values.server.ingress.host }}
+{{- end }}

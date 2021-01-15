@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.database.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.database.name }}
+  strategy:
+    type: {{ .Values.database.strategy }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.database.name }}
+    spec:
+      containers:
+      - image: {{ .Values.database.container.image }}
+        name: {{ .Values.database.name }}
+        ports:
+        -  containerPort: {{ .Values.database.container.port }}
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: {{ .Values.database.name }}-secret
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: {{ .Values.database.name }}-secret
+        envFrom:
+          -  configMapRef:
+              name: {{ .Values.database.name }}-config
+        volumeMounts:
+        - name: {{ .Values.database.container.volumeMounts.name }}
+          mountPath: {{ .Values.database.container.volumeMounts.mountPath }}
+          subPath: {{ .Values.database.container.volumeMounts.subPath }}
+        - mountPath: /docker-entrypoint-initdb.d
+          name: {{ .Values.database.name }}-initdb
+      volumes:
+      - name: {{ .Values.database.volume.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.database.volume.persistentVolumeClaim }}
+      - name: {{ .Values.database.name }}-initdb
+        configMap:
+          name: {{ .Values.database.name }}-initdb-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.database.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.database.name }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: {{ .Values.database.container.port }}
+  selector:
+    app: {{ .Values.database.name }}

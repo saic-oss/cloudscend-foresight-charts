@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.database.volume.persistentVolumeClaim }}
+  namespace: {{ .Values.namespace }}
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.database.volume.persistentVolumeClaimStorage }}
+  storageClassName: {{ .Values.database.volume.storageClassName }}
