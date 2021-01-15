@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.database.name }}-config
-  namespace: {{ .Values.namespace }}
-  labels:
-    app: {{ .Values.database.name }}
-data:
-  POSTGRES_DB: {{ .Values.database.schema }}
