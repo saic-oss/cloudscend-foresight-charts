@@ -15,5 +15,5 @@ spec:
             host: {{ .Values.name }}
             port:
               number: {{ .Values.ingress.port }}
-    timeout: 60s
+    - timeout: 60s
 {{- end }}
