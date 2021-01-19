@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.image.imagePullSecrets }}
+      containers:
+      - name: {{ .Values.name }}
+        image: {{ .Values.image.repository }}
+        ports:
+        - containerPort: {{ .Values.container.port }}
+        args: ["--app.cors.allowed-origins[0]={{ .Values.keycloak.allowed_origins }}",
+        "--keycloak.enabled=true",
+        "--keycloak.auth-server-url={{ .Values.keycloak.auth_server_url }}",
+        "--keycloak.ssl-required=none",
+        "--keycloak.realm={{ .Values.keycloak.realm }}",
+        "--keycloak.resource=sage",
+        "--keycloak.bearer-only=true",
+        "--keycloak.autodetect-bearer-only=true",
+        "--keycloak.enable-basic-auth=false",
+        "--keycloak.use-resource-role-mappings=false",
+        "--keycloak.public-client=true",
+        "--keycloak.principal-attribute=preferred_username"]
+        env:
+          - name: SAGE_URL
+            value: {{ .Values.container.env.sage_url }}
+          - name: SAGE_HTTP_PROTOCOL
+            value: {{ .Values.container.env.sage_http_protocol }}
+          - name: GIT_SERVER_IP_ADDRESS
+            value: {{ .Values.container.env.git_server_ip_address }}
+          - name: GIT_CLI_PROTOCOL
+            value: {{ .Values.container.env.git_cli_protocol }}
+          - name: GIT_USER
+            value: {{ .Values.container.env.git_user }}
+          - name: GIT_PRIVATE_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: gitpassword
+                name: {{ .Values.name }}-secret
+          - name: GIT_USER_PASSWD
+            valueFrom:
+              secretKeyRef:
+                key: gitpassword
+                name: {{ .Values.name }}-secret
+          - name: GIT_USER_EMAIL
+            value: {{ .Values.container.env.git_user_email }}
