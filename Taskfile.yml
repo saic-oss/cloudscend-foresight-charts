@@ -21,6 +21,13 @@ tasks:
     cmds:
       - find ./* -type d -mindepth 0 -maxdepth 0 -print0 | xargs -0 helm lint --strict
 
+  install-chart-deps:
+    desc: Installs Helm chart dependent repos
+    status:
+      - helm repo list | grep "bitnami"
+    cmds:
+      - helm repo add bitnami https://charts.bitnami.com/bitnami
+
   test:
     desc: Run automated tests
     cmds:
@@ -47,6 +54,7 @@ tasks:
 
   chart-releaser:package:
     desc: Package all charts, then delete ones that already have been uploaded
+    deps: [install-chart-deps]
     cmds:
       - rm -rf .cr-release-packages
       - helm-cr package charts/*
