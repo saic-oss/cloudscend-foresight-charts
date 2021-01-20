@@ -3,12 +3,12 @@ entries:
   sage-frontend:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-01-20T18:03:05.351070321Z"
-    description: A Helm chart for Kubernetes
-    digest: a2427475978c3f0ef0f28102e1796a56b1aea8dc47de930898bae285508504ca
+    created: "2021-01-20T18:34:40.069249602Z"
+    description: A Helm chart for the Sage Frontend Service
+    digest: a424cc709a4abdb77967a123fc949e835c2feead2af8ca61a7fadaba39c9dd9c
     name: sage-frontend
     type: application
     urls:
     - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/sage-frontend-1.0.0/sage-frontend-1.0.0.tgz
     version: 1.0.0
-generated: "2021-01-20T18:03:05.051827012Z"
+generated: "2021-01-20T18:34:38.94381846Z"
