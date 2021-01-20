@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name }}-config
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.name }}
+data:
+  GIT_SERVERURL: {{ .Values.env.git_server_url }}
+  GIT_USER: {{ .Values.env.git_user }}
+  GIT_PASSWORD: {{ .Values.env.git_password }}
+  GIT_USER_EMAIL: {{ .Values.env.git_user_email }}
+  GIT_LOCAL_DIR: {{ .Values.env.git_local_dir }}
+  SONAR_AUTHTYPE: {{ .Values.env.sonar_auth_type }}
+  SONAR_IPADDR: {{ .Values.env.sonar_ipaddr }}
+  SONAR_LOGIN: {{ .Values.env.sonar_login }}
+  SONAR_PASSWORD: {{ .Values.env.sonar_password }}
+  SONAR_URL: {{ .Values.env.sonar_url }}
+  SONARQUBE_DIR: {{ .Values.env.sonarqube_dir }}
+  ADVISOR_REPORTS_DIR: {{ .Values.env.advisor_reports_dir }}
+  SAGE_URL: {{ .Values.env.sage_url }}
+  ADVISOR_SAGE_REPORT_URL: {{ .Values.env.advisor_sage_report_url }}
+  SAGE_HOST: {{ .Values.env.sage_host }}
+  SAGE_PORT: {{ .Values.env.sage_port | quote }}
+  SAGE_PROTOCOL: {{ .Values.env.sage_protocol }}
+  WINDOWS_HOST: {{ .Values.env.windows_host }}
+  WINDOWS_PORT: {{ .Values.env.windows_port | quote }}
+  WINDOWS_PROTOCOL: {{ .Values.env.windows_protocol }}

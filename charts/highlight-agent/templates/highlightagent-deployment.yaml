@@ -1,0 +1,130 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    apps: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets }}
+      containers:
+      - name: {{ .Values.name }}
+        imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+        image: {{ .Values.image.repository }}
+        ports:
+        - containerPort: {{ .Values.containers.containerPort }}
+        args: ["--app.cors.allowed-origins[0]={{ .Values.keycloak.allowed_origins }}",
+        "--keycloak.enabled=true",
+        "--keycloak.auth-server-url={{ .Values.keycloak.auth_server_url }}",
+        "--keycloak.ssl-required=none",
+        "--keycloak.realm={{ .Values.keycloak.realm }}",
+        "--keycloak.resource=sage",
+        "--keycloak.bearer-only=true",
+        "--keycloak.autodetect-bearer-only=true",
+        "--keycloak.enable-basic-auth=false",
+        "--keycloak.use-resource-role-mappings=false",
+        "--keycloak.public-client=true",
+        "--keycloak.principal-attribute=preferred_username"]
+        env:
+          - name: GIT_SERVER
+            value: {{ .Values.containers.env.git_server }}
+          - name: GIT_USER
+            value: {{ .Values.containers.env.git_user }}
+          - name: GIT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: gitpassword
+                name: {{ .Values.name }}-secret
+          - name: GIT_USER_EMAIL
+            value: {{ .Values.containers.env.git_user_email }}
+          - name: GIT_LOCAL_DIR
+            value: {{ .Values.containers.env.git_local_dir }}
+          - name: GIT_REPORTS_DIR
+            value: {{ .Values.containers.env.git_reports_dir }}
+          - name: HIGHLIGHT_URL
+            value: {{ .Values.containers.env.highlight_url }}
+          - name: HIGHLIGHT_DOMAINNAME
+            value: {{ .Values.containers.env.highlight_domain_name }}
+          - name: HIGHLIGHT_SCAFEATUREDEFAULT
+            value: {{ .Values.containers.env.highlight_scafeature | quote }}
+          - name: HIGHLIGHT_SUBDOMAINNAME
+            value: {{ .Values.containers.env.highlight_subdomain }}}
+          - name: HIGHLIGHT_JAVA_DIR
+            value: {{ .Values.containers.env.highlight_java_dir }}
+          - name: HIGHLIGHT_COMMAND_DIR
+            value: {{ .Values.containers.env.highlight_command_dir }}
+          - name: HIGHLIGHT_REPORTS_DIR
+            value: {{ .Values.containers.env.highlight_reports_dir }}
+          - name: HIGHLIGHT_SAGE_REPORT_URL
+            value: {{ .Values.containers.env.highlight_sage_report_url }}
+          - name: QUEUE_ANALYSIS_SERVER
+            value: {{ .Values.containers.env.queue_analysis_server }}
+          - name: SAGE_SERVER
+            value: {{ .Values.containers.env.sage_server }}
+          - name: HIGHLIGHT_SCAN_TIMEOUT_MINUTES
+            value: {{ .Values.containers.env.highlight_scan_timeout_minutes | quote }}
+          - name: HIGHLIGHT_APP_TIMEOUT_MINUTES
+            value: {{ .Values.containers.env.highlight_app_timeout_minutes | quote}}
+          - name: "HIGHLIGHT_APP3RDPARTY_TIMEOUT_MINUTES"
+            value: {{ .Values.containers.env.highlight_app3rdparty_timeout_minutes | quote }}
+          - name: HIGHLIGHT_APPDEPENDENCY_TIMEOUT_MINUTES
+            value: {{ .Values.containers.env.highlight_appdependency_timeout_minutes | quote }}
+          - name: HIGHLIGHT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: highlightpassword
+                name: {{ .Values.name }}-secret
+          - name: HIGHLIGHT_USERNAME
+            value: {{ .Values.containers.env.highlight_username }}
+          - name: HIGHLIGHT_VIEWERPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: highlightviewerpassword
+                name: {{ .Values.name }}-secret
+          - name: HIGHLIGHT_VIEWERUSERNAME
+            value: {{ .Values.containers.env.highlight_viewerusername }}
+          - name: HIGHLIGHT_ADMINPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: highlightadminpassword
+                name: {{ .Values.name }}-secret
+          - name: HIGHLIGHT_ADMINUSERNAME
+            value: {{ .Values.containers.env.highlight_adminusername }}
+        resources:
+          limits:
+            cpu: {{ .Values.containers.resources.limits.cpu }}
+          requests:
+            cpu: {{ .Values.containers.resources.requests.cpu }}
+        volumeMounts:
+        - name: {{ .Values.name }}
+          mountPath: {{ .Values.volumeMounts.mountPath }}
+      volumes:
+      - name: {{ .Values.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.volumes.persistentVolumeClaim }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.name }}
