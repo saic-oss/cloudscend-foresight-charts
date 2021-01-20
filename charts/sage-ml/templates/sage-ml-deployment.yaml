@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.image.imagePullSecrets }}
+      containers:
+      - name: {{ .Values.name }}
+        image: {{ .Values.image.repository }}
+        ports:
+        - containerPort: {{ .Values.containers.port }}
+        env:
+        - name: KEYCLOAK_AUTH_SERVER_URL
+          value: {{ .Values.keycloak.auth_server_url }}
+        - name: KEYCLOAK_REALM
+          value: {{ .Values.keycloak.realm }}
+        - name: KEYCLOAK_CLIENT_ID
+          value: {{ .Values.keycloak.client_id }}
+        - name: KEYCLOAK_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: KEYCLOAK_CLIENT_SECRET
+              name: {{ .Values.name }}-secret
+        - name: FLASK_APP_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              key: FLASK_APP_SECRET_KEY
+              name: {{ .Values.name }}-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.containers.port }}
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.name }}

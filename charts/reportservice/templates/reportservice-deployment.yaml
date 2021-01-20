@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      volumes:
+      - name: {{ .Values.name }}-persistent-storage
+        persistentVolumeClaim:
+          claimName: {{ .Values.spec.volumes.persistentVolumeClaim }}
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.name }}
+      containers:
+      - name: {{ .Values.name }}
+        imagePullPolicy: {{ .Values.spec.containers.imagePullPolicy }}
+        image: {{ .Values.spec.containers.image }}
+        args: ["--app.cors.allowed-origins[0]={{ .Values.keycloak.allowed_origins }}",
+        "--app.cors.allowed-origins[1]=http://localhost:4200",
+        "--keycloak.enabled=true",
+        "--keycloak.auth-server-url={{ .Values.keycloak.auth_server_url }}",
+        "--keycloak.ssl-required=none",
+        "--keycloak.realm={{ .Values.keycloak.realm }}",
+        "--keycloak.resource=sage",
+        "--keycloak.bearer-only=true",
+        "--keycloak.autodetect-bearer-only=true",
+        "--keycloak.enable-basic-auth=false",
+        "--keycloak.use-resource-role-mappings=false",
+        "--keycloak.public-client=true",
+        "--keycloak.principal-attribute=preferred_username"]
+        volumeMounts:
+        - name: {{ .Values.name }}-persistent-storage
+          mountPath: /AMaaS/advisor-reports
+        env:
+        - name: GIT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: gitpassword
+              name: {{ .Values.name }}-secret
+        envFrom:
+          - configMapRef:
+              name: {{ .Values.name }}-config
+        ports:
+        - containerPort: {{ .Values.spec.containers.ports.containerPort }}
+        resources:
+          limits:
+            cpu: "2"
+          requests:
+            cpu: "1"
