@@ -1,6 +1,6 @@
-# sage-charts
+# CloudScend Foresight Charts
 
-Helm Charts repository for Sage.
+Helm Charts repository for CloudScend Foresight.
 
 ## Prerequisites
 
