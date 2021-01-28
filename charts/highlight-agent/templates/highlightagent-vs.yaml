@@ -1,4 +1,4 @@
-{{- if .Values.ingress.enabled }}
+{{- if .Values.istio.enabled }}
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -6,13 +6,13 @@ metadata:
   namespace: {{ .Values.namespace }}
 spec:
   hosts:
-  - {{ quote .Values.ingress.hosts }}
+  - {{ quote .Values.istio.hosts }}
   gateways:
-  - {{ .Values.ingress.gateways }}
+  - {{ .Values.istio.gateways }}
   http:
     - route:
         - destination:
             host: {{ .Values.name }}
             port:
-              number: {{ .Values.ingress.port }}
+              number: {{ .Values.istio.port }}
 {{- end }}
