@@ -63,6 +63,21 @@ entries:
   sage-backend:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-01-28T21:15:51.067244063Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.1
+    description: A Helm chart for the Sage Backend API service
+    digest: 58be5da7f893ed13bbec454fb0a4d021e2f345db57d7234e9f8814ae872318f1
+    name: sage-backend
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/sage-backend-1.0.2/sage-backend-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-01-20T20:26:03.943073757Z"
     dependencies:
     - condition: postgresql.enabled
