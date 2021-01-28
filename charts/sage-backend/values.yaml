@@ -17,47 +17,47 @@ spec:
     persistentVolumeClaim: sage-api-pv-claim
     persistentVolumeClaimStorage: 20Gi
 keycloak:
-  allowed_origins:
-  auth_server_url:
+  allowed_origins: ""
+  auth_server_url: ""
   realm: appmod
 env:
-  database_username:
-  database_url:
+  database_username: ""
+  database_url: ""
   database_name: sage
-  advisor_analysis_url:
-  advisor_reports_url:
-  common_data_url:
-  highlight_analysis_url:
-  highlight_report_url:
-  sage_report_url:
-  queue_analysis_url:
+  advisor_analysis_url: ""
+  advisor_reports_url: ""
+  common_data_url: ""
+  highlight_analysis_url: ""
+  highlight_report_url: ""
+  sage_report_url: ""
+  queue_analysis_url: ""
   aws_bucket_name: sample
   aws_s3_enabled: true
-  cast_highlight_url:
-  metabase_site_url:
-  metabase_dashboard_number:
-  sage_machinelearning_url:
-  sage_machinelearning_client_name:
+  cast_highlight_url: ""
+  metabase_site_url: ""
+  metabase_dashboard_number: ""
+  sage_machinelearning_url: ""
+  sage_machinelearning_client_name: ""
 secret:
-  username:
-  password:
-  keycloakadminuser:
-  keycloakadminpassword:
-  metabasesecretkey:
-  highlighttokenusername:
-  highlighttokenpassword:
-  sage_machinelearning_client_password:
-  postgres_password:
+  username: ""
+  password: ""
+  keycloakadminuser: ""
+  keycloakadminpassword: ""
+  metabasesecretkey: ""
+  highlighttokenusername: ""
+  highlighttokenpassword: ""
+  sage_machinelearning_client_password: ""
+  postgres_password: ""
 cloud_aws:
   stack:
-    auto:
+    auto: ""
   region:
-    auto:
-    static:
+    auto: ""
+    static: ""
   credentials:
-    instanceProfile:
-    accessKey:
-    secretKey:
+    instanceProfile: ""
+    accessKey: ""
+    secretKey: ""
 
 ingress:
   hosts: ""
@@ -68,6 +68,8 @@ ingress:
 ##### POSTGRES Configuration
 postgresql:
   enabled: false
+  annotations:
+    app: sage-database
   image:
     pullSecrets: ""
     pullPolicy: "IfNotPresent"
@@ -79,7 +81,7 @@ postgresql:
   # PostgreSQL User to create
   postgresqlUsername: sage-db
   # PostgreSQL Password for the new user
-  postgresqlPassword:
+  postgresqlPassword: ""
   # PostgreSQL Database to create
   postgresqlDatabase: sage-db
   # Persistent Volume Storage configuration
