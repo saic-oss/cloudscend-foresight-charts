@@ -19,8 +19,16 @@ spec:
       - name: {{ .Values.spec.volumes.name }}
         persistentVolumeClaim:
           claimName: {{ .Values.spec.volumes.name }}
+      - name: license-key
+        secret:
+          secretName: {{ .Values.name }}-secret
+          items:
+            - key: license_key
+              path: license.txt
+      {{- if .Values.imagePullSecrets.name }}
       imagePullSecrets:
         -  name:  {{ .Values.imagePullSecrets.name }}
+      {{- end }}
       containers:
       - name: {{ .Values.name }}
         imagePullPolicy: {{ .Values.spec.containers.imagePullPolicy }}
@@ -43,6 +51,8 @@ spec:
         volumeMounts:
         - name: {{ .Values.spec.volumes.name }}
           mountPath: /AMaaS/sage/reports
+        - name: license-key
+          mountPath: /etc/sage
         env:
         - name: KEYCLOAKADMIN_MASTER_USERNAME
           valueFrom:
