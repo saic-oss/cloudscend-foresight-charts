@@ -16,33 +16,35 @@ imagePullSecrets: regcred
 containers:
   containerPort: 8080
   env:
-    git_server:
-    git_user: 
-    git_user_email: 
-    git_local_dir: 
-    git_reports_dir:
-    highlight_url: 
-    highlight_domain_name: }
-    highlight_scafeature: 
-    highlight_subdomain: 
-    highlight_java_dir: 
-    highlight_command_dir: 
-    highlight_reports_dir: 
-    highlight_sage_report_url: 
-    highlight_scan_timeout_minutes: 
-    highlight_app_timeout_minutes: 
+    git_server: ""
+    git_user: oauth
+    highlight_username:
+    highlight_viewerusername:
+    highlight_adminusername:
+    git_user_email:
+    git_local_dir: /tmp/code/highlight-agent/git-repositories
+    git_reports_dir: /tmp/code/highlight-agent/git-repositories/reports
+    highlight_url:
+    highlight_domain_name: SAIC
+    highlight_scafeature: true
+    highlight_subdomain: SAGE
+    highlight_user_name:
+    highlight_java_dir: /usr/bin
+    highlight_command_dir: /opt/hlt
+    highlight_reports_dir: /AMaaS/highlight/reports
+    highlight_sage_report_url:
+    queue_analysis_server:
+    sage_server:
+    highlight_scan_timeout_minutes:
+    highlight_app_timeout_minutes:
     highlight_app3rdparty_timeout_minutes:
     highlight_appdependency_timeout_minutes:
-    queue_analysis_server: 
-    sage_server: 
-    highlight_adminusername: 
-    highlight_viewerusername: 
-    highlight_username: 
   resources:
     limits:
       cpu: 2
     requests:
       cpu: 1
+
 secret:
   git_user:
   git_password:
