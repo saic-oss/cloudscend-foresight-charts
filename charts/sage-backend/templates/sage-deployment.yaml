@@ -24,11 +24,11 @@ spec:
           secretName: {{ .Values.name }}-secret
           items:
             - key: license_key
-            path: license.txt
-      {{ if .Values.imagePullSecrets.name }}
+              path: license.txt
+      {{- if .Values.imagePullSecrets.name }}
       imagePullSecrets:
         -  name:  {{ .Values.imagePullSecrets.name }}
-      {{ end }}
+      {{- end }}
       containers:
       - name: {{ .Values.name }}
         imagePullPolicy: {{ .Values.spec.containers.imagePullPolicy }}
