@@ -1,19 +1,37 @@
-{{- if .Values.ingress.enabled }}
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
+{{- if .Values.ingress.enabled -}}
+{{- $serviceName := .Values.name -}}
+{{- $servicePort := .Values.spec.containers.ports.containerPort -}}
+{{- $ingressPath := .Values.ingress.path -}}
+apiVersion: networking.k8s.io/v1beta1 Ingress
+kind: Ingress
 metadata:
   name: {{ .Values.name }}
   namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  {{- range $key, $value := .Values.ingress.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+    {{- range $key, $value := .Values.ingress.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
 spec:
-  hosts:
-  - {{ quote .Values.ingress.hosts }}
-  gateways:
-  - {{ .Values.ingress.gateways }}
-  http:
-  - timeout: 60s
-    route:
-    - destination:
-        host: {{ .Values.name }}
-        port:
-          number: {{ .Values.ingress.port }}
-{{- end }}
+  rules:
+    {{- range $host := .Values.ingress.hosts }}
+    - host: {{ $host }}
+      http:
+        paths:
+          - path: {{ $ingressPath }}
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+    {{- end -}}
+  {{- if .Values.ingress.tls }}
+  tls:
+{{ toYaml .Values.ingress.tls | indent 4 }}
+  {{- end -}}
+{{- end -}}
