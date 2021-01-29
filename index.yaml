@@ -77,6 +77,16 @@ entries:
   reportservice:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-01-29T21:38:48.466854212Z"
+    description: A Helm chart for the Sage Report Service
+    digest: e82ef54dbaa60ee09d075587393105da7335f919b49de4ba3a7494ec300907cb
+    name: reportservice
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/reportservice-1.0.2/reportservice-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-01-20T20:26:03.820488135Z"
     description: A Helm chart for the Sage Report Service
     digest: 263e45fb726476fff975335e8abc19730be024f7a364dea61414d0d2aee1bb05
