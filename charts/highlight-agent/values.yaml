@@ -25,9 +25,9 @@ containers:
     git_local_dir: /tmp/code/highlight-agent/git-repositories
     git_reports_dir: /tmp/code/highlight-agent/git-repositories/reports
     highlight_url:
-    highlight_domain_name: SAIC
+    highlight_domain_name:
     highlight_scafeature: true
-    highlight_subdomain: SAGE
+    highlight_subdomain:
     highlight_user_name:
     highlight_java_dir: /usr/bin
     highlight_command_dir: /opt/hlt
