@@ -15,8 +15,10 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
+      {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
-        - name: {{ .Values.imagePullSecrets }}
+        - name:  {{ .Values.imagePullSecrets }}
+      {{- end }}
       containers:
       - name: {{ .Values.name }}
         imagePullPolicy: {{ .Values.image.imagePullPolicy }}
@@ -58,7 +60,7 @@ spec:
           - name: HIGHLIGHT_SCAFEATUREDEFAULT
             value: {{ .Values.containers.env.highlight_scafeature | quote }}
           - name: HIGHLIGHT_SUBDOMAINNAME
-            value: {{ .Values.containers.env.highlight_subdomain }}}
+            value: {{ .Values.containers.env.highlight_subdomain }}
           - name: HIGHLIGHT_JAVA_DIR
             value: {{ .Values.containers.env.highlight_java_dir }}
           - name: HIGHLIGHT_COMMAND_DIR
