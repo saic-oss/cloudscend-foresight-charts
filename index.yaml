@@ -3,6 +3,21 @@ entries:
   commondata-backend:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-01-29T20:39:10.801269412Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.1
+    description: A Helm chart for the Sage Commondata API service
+    digest: 6a406492809069daa28f1ef580fa4636437a973ffc9805eeb9f7307d4d4f512e
+    name: commondata-backend
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/commondata-backend-1.0.2/commondata-backend-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-01-20T20:26:03.391137936Z"
     dependencies:
     - condition: postgresql.enabled
