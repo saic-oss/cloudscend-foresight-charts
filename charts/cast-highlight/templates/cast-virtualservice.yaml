@@ -1,0 +1,24 @@
+{{- if .Values.server.istio.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Values.server.name }}
+  namespace: {{ .Values.namespace.name }}
+spec:
+  hosts:
+  - {{ quote .Values.server.istio.host }}
+  gateways:
+  - {{ .Values.server.istio.gateway }}
+  http:
+    - route:
+        - destination:
+            host: {{ .Values.server.name }}
+            port:
+              number: {{ .Values.server.container.port }}
+          headers:
+            response:
+              remove:
+              - X-Frame-Options
+              set:
+                location: https://{{ .Values.server.istio.host }}
+{{- end }}

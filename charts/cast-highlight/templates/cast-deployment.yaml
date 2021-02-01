@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace.name }}
+  name: {{ .Values.server.name }}
+  labels:
+    app: {{ .Values.server.name }}
+spec:
+  replicas: {{ .Values.server.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.server.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.server.name }}
+    spec:
+      {{ if .Values.imagePullSecrets.name }}
+      imagePullSecrets:
+        -  name:  {{ .Values.imagePullSecrets.name }}
+      {{ end }}
+      containers:
+        - name: {{ .Values.server.name }}
+          image: {{ .Values.server.container.image }}
+          ports:
+          - containerPort: {{ .Values.server.container.port }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.server.name }}-config
+          env:
+          - name: HL_PG_USER
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: {{ .Values.database.name }}-secret
+          - name: HL_PG_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: {{ .Values.database.name }}-secret
+          - name: HL_ADMIN_MAIL
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: {{ .Values.server.name }}-secret
+          - name: HL_ADMIN_PWD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: {{ .Values.server.name }}-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace.name }}
+  name: {{ .Values.server.name }}
+  labels:
+    app: {{ .Values.server.name }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.server.container.port }}
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.server.name }}
