@@ -32,13 +32,13 @@ server:
           - sample.com
   secret:
     username: admin-cast-highlight@castsoftware.com
-    password: 
+    password:
     additionalAccountPassword:
 
 database:
   name: hl-db
   replicas: 1
-  container: 
+  container:
     image: postgres:10.3-alpine
     port: 5432
     volumeMounts:
@@ -53,7 +53,7 @@ database:
     storageClassName: aws-efs
   secret:
     username: highlight_root
-    password: 
+    password:
   schema: highlight
 
 sca:
