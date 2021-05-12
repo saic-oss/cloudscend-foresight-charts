@@ -7,7 +7,7 @@ server:
   replicas: 1
   host: sample.com
   container:
-    image: 
+    image:
     port: 8080
   istio:
     enabled: false
@@ -32,13 +32,13 @@ server:
           - sample.com
   secret:
     username:
-    password: 
+    password:
     additionalAccountPassword:
 
 database:
   name: hl-db
   replicas: 1
-  container: 
+  container:
     image: postgres:10.3-alpine
     port: 5432
     volumeMounts:
@@ -53,11 +53,11 @@ database:
     storageClassName: aws-efs
   secret:
     username:
-    password: 
+    password:
   schema: highlight
   job:
     image: bitnami/postgresql:latest
-    
+
 sca:
   host:
   port: 80
