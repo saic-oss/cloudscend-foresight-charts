@@ -57,7 +57,9 @@ data:
             "OAUTH_TOKEN",
             "BLIND_USER"
         ],
-        "cloudPlatformRecommendationType": []
+        "cloudPlatformRecommendationType": [
+            "all"
+        ]
     }'
 
     ## CREATE USERS
@@ -194,7 +196,3 @@ data:
             "companyRoles": []
         }
     }'
-
-{{- if .Values.server.istio.enabled }}
-    curl -X POST http://127.0.0.1:15020/quitquitquit
-{{- end }}

@@ -12,6 +12,9 @@ image:
   tag: v0.36.3
   pullPolicy: IfNotPresent
 
+imagePullSecrets:
+  name: sif-token
+
 ## String to fully override metabase.fullname template
 ##
 # fullnameOverride:

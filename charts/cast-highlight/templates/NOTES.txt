@@ -7,7 +7,7 @@
 {{- if .Values.server.ingress.enabled }}
 
 Cast Highlight was installed with an Ingress and can be reached at the following URL:
-  - https://{{ .Values.server.ingress.host }}
+  - https://{{ index .Values.server.ingress.hosts 0 }}
 
 To connect to the portal as admin:
  - user: {{ .Values.server.secret.username }}
