@@ -42,9 +42,9 @@ spec:
       volumes:
       - name: {{ .Values.database.volume.name }}
         persistentVolumeClaim:
-          claimName: {{ .Values.database.volume.persistentVolumeClaim }}
+          claimName: {{ .Values.database.volume.persistentVolumeClaim }} 
       - name: {{ .Values.database.name }}-initdb
-        configMap:
+        configMap: 
           name: {{ .Values.database.name }}-initdb-config
 ---
 apiVersion: v1

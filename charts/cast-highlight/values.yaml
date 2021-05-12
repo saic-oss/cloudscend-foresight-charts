@@ -7,7 +7,7 @@ server:
   replicas: 1
   host: sample.com
   container:
-    image: 358354085340.dkr.ecr.us-east-1.amazonaws.com/cast/hl-war-vm:23
+    image: 
     port: 8080
   istio:
     enabled: false
@@ -31,14 +31,14 @@ server:
         hosts:
           - sample.com
   secret:
-    username: admin-cast-highlight@castsoftware.com
-    password:
+    username:
+    password: 
     additionalAccountPassword:
 
 database:
   name: hl-db
   replicas: 1
-  container:
+  container: 
     image: postgres:10.3-alpine
     port: 5432
     volumeMounts:
@@ -52,14 +52,16 @@ database:
     persistentVolumeClaimStorage: 20Gi
     storageClassName: aws-efs
   secret:
-    username: highlight_root
-    password:
+    username:
+    password: 
   schema: highlight
-
+  job:
+    image: bitnami/postgresql:latest
+    
 sca:
-  host: ec2-52-61-149-234.us-gov-west-1.compute.amazonaws.com
+  host:
   port: 80
   ssl: false
 
 imagePullSecrets:
-  name: sif-token
+  name:

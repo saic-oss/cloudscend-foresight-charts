@@ -12,6 +12,9 @@ image:
   tag: v0.36.3
   pullPolicy: IfNotPresent
 
+imagePullSecrets:
+  name: sif-token
+
 ## String to fully override metabase.fullname template
 ##
 # fullnameOverride:
@@ -150,7 +153,7 @@ postgresql:
    # PostgreSQL User to create
    postgresqlUsername: metabase
    # PostgreSQL Password for the new user
-   postgresqlPassword:
+   postgresqlPassword: 
    # PostgreSQL Database to create
    postgresqlDatabase: metabase
    # Persistent Volume Storage configuration
