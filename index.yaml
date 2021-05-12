@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  cast-hl:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-05-12T18:32:49.129829538Z"
+    description: A Helm chart for Kubernetes
+    digest: 5dd80eebfd61422bff3bdcb66be3e1924433a01f5f1dec99ca48182b27cb04a2
+    name: cast-hl
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/cast-hl-1.0.0/cast-hl-1.0.0.tgz
+    version: 1.0.0
   commondata-backend:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -160,6 +171,16 @@ entries:
   sage-ml:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-05-12T18:32:49.63646265Z"
+    description: A Helm chart for the Sage Machine Learning Service
+    digest: de0786a8edf381766679a8690ebaadf79c6a2ae4c4bd787644ac46ebbc9f8d3a
+    name: sage-ml
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/sage-ml-1.0.2/sage-ml-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-01-20T20:26:04.226366822Z"
     description: A Helm chart for the Sage Machine Learning Service
     digest: 47d1e2b9ccdf054e5cde0204b68eeb9da7514088dcb31963278bed9e74cdb1ed
@@ -169,6 +190,16 @@ entries:
     - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/sage-ml-1.0.1/sage-ml-1.0.1.tgz
     version: 1.0.1
   uploader:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-05-12T18:32:49.712180081Z"
+    description: A Helm chart for the Sage Source Code Uploader Service
+    digest: 2a648bd1175efbc14a6376a737ca77494514658339310b790e24e9a1b0a2f165
+    name: uploader
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/uploader-1.0.3/uploader-1.0.3.tgz
+    version: 1.0.3
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2021-01-20T20:26:04.411341686Z"
