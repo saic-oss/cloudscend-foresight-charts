@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.server.name }}-config
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.server.name }}
+data:
+  HL_PG_SERVER: {{ .Values.database.name }}
+  HL_PG_PORT: "5432"
+  HL_PG_DB: highlight
+  HL_PG_SCHEMA: {{ .Values.database.schema }}
+  HL_HOSTNAME: {{ .Values.server.host }}
+  HL_ROOT_URL: https://{{ .Values.server.ingress.host }}/
+  HL_ANTEPEDIA_HOST: {{ .Values.sca.host }}
+  HL_ANTEPEDIA_PORT: "{{ .Values.sca.port }}"
+  HL_ANTEPEDIA_SSL: "{{ .Values.sca.ssl }}"

@@ -1,27 +1,27 @@
-{{- if .Values.ingress.enabled -}}
-{{- $serviceName := .Values.name -}}
-{{- $servicePort := .Values.container.port -}}
-{{- $ingressPath := .Values.ingress.path -}}
+{{- if .Values.server.ingress.enabled -}}
+{{- $serviceName := .Values.server.name -}}
+{{- $servicePort := .Values.server.container.port -}}
+{{- $ingressPath := .Values.server.ingress.path -}}
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: {{ .Values.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ .Values.server.name }}
+  namespace: {{ .Values.namespace.name }}
   labels:
-    app: {{ .Values.name }}
+    app: {{ .Values.server.name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-  {{- range $key, $value := .Values.ingress.labels }}
+  {{- range $key, $value := .Values.server.ingress.labels }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
   annotations:
-    {{- range $key, $value := .Values.ingress.annotations }}
+    {{- range $key, $value := .Values.server.ingress.annotations }}
       {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
   rules:
-    {{- range $host := .Values.ingress.hosts }}
+    {{- range $host := .Values.server.ingress.hosts }}
     - host: {{ $host }}
       http:
         paths:
@@ -30,8 +30,8 @@ spec:
               serviceName: {{ $serviceName }}
               servicePort: {{ $servicePort }}
     {{- end -}}
-  {{- if .Values.ingress.tls }}
+  {{- if .Values.server.ingress.tls }}
   tls:
-{{ toYaml .Values.ingress.tls | indent 4 }}
+{{ toYaml .Values.server.ingress.tls | indent 4 }}
   {{- end -}}
 {{- end -}}
