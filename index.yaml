@@ -3,6 +3,16 @@ entries:
   cast-hl:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-05-13T19:10:47.136303416Z"
+    description: A Helm chart for Kubernetes
+    digest: a152ea1ae81d3cc69089426df0aecfc520f0b4181bcc54bc46c85c6094b5c6c8
+    name: cast-hl
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/cast-hl-1.0.1/cast-hl-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-05-12T18:32:49.129829538Z"
     description: A Helm chart for Kubernetes
     digest: 5dd80eebfd61422bff3bdcb66be3e1924433a01f5f1dec99ca48182b27cb04a2
@@ -64,6 +74,27 @@ entries:
     - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/highlight-agent-1.0.1/highlight-agent-1.0.1.tgz
     version: 1.0.1
   metabase:
+  - apiVersion: v1
+    appVersion: v0.36.3
+    created: "2021-05-13T19:10:47.392703651Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.1.1
+    description: The easy, open source way for everyone in your company to ask questions and learn from data.
+    digest: 250946615a4657b1547ccd466d8a65b262a269b6606745be9c9a7cd770901d90
+    home: http://www.metabase.com/
+    icon: http://www.metabase.com/images/logo.svg
+    maintainers:
+    - email: phamminhthanh69@gmail.com
+      name: pmint93
+    name: metabase
+    sources:
+    - https://github.com/metabase/metabase
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/metabase-0.12.3/metabase-0.12.3.tgz
+    version: 0.12.3
   - apiVersion: v1
     appVersion: v0.36.3
     created: "2021-01-20T20:26:03.704120013Z"
