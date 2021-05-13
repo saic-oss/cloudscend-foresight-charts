@@ -11,4 +11,4 @@ maintainers:
 name: metabase
 sources:
 - https://github.com/metabase/metabase
-version: 0.12.2
+version: 0.12.3
