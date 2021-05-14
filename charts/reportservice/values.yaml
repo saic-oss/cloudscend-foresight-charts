@@ -35,6 +35,7 @@ env:
   advisor_sage_report_url:
   git_local_dir: /AMaaS/gitlab
   git_server:
+  git_group:
   git_user: oauth
   git_password: ""
   git_user_email:
