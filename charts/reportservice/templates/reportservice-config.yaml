@@ -7,6 +7,7 @@ metadata:
     app: {{ .Values.name }}
 data:
   GIT_SERVERURL: {{ .Values.env.git_server_url }}
+  GIT_GROUP: {{ .Values.env.git_group }}
   GIT_USER: {{ .Values.env.git_user }}
   GIT_PASSWORD: {{ .Values.env.git_password }}
   GIT_USER_EMAIL: {{ .Values.env.git_user_email }}
