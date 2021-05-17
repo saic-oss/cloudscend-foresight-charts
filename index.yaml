@@ -233,6 +233,16 @@ entries:
   uploader:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-05-17T19:14:10.167677615Z"
+    description: A Helm chart for the Source Code Uploader Service
+    digest: f988796643a589238b451487b780102802cc2b0bfdf78ffcfd99be2f07d0a866
+    name: uploader
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/uploader-1.0.4/uploader-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-05-12T18:32:49.712180081Z"
     description: A Helm chart for the Sage Source Code Uploader Service
     digest: 2a648bd1175efbc14a6376a737ca77494514658339310b790e24e9a1b0a2f165
