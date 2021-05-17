@@ -119,6 +119,16 @@ entries:
   reportservice:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-05-17T23:19:01.386403602Z"
+    description: A Helm chart for the Sage Report Service
+    digest: ab463bb7b9db5ebc60514e917e8631e177ec650524a0bdc98cff3f88c43f0a5d
+    name: reportservice
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/reportservice-1.0.4/reportservice-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-05-17T19:00:38.931879719Z"
     description: A Helm chart for the Sage Report Service
     digest: 3d868e275724b0ce0614c16b08ee03279982c2f880b03111071f3d1f4c02c60c
@@ -240,6 +250,16 @@ entries:
     - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/sage-frontend-1.0.0/sage-frontend-1.0.0.tgz
     version: 1.0.0
   sage-ml:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-05-17T23:19:01.814565838Z"
+    description: A Helm chart for Kubernetes
+    digest: d254992b504b5a57c85e9ebf89c61a3dd2e72631949f399beae1bf0ea0ac5ff0
+    name: sage-ml
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/sage-ml-1.0.3/sage-ml-1.0.3.tgz
+    version: 1.0.3
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2021-05-12T18:32:49.63646265Z"
