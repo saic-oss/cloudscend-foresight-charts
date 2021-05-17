@@ -16,6 +16,7 @@ spec:
     name: sage-api-persistent-storage
     persistentVolumeClaim: sage-api-pv-claim
     persistentVolumeClaimStorage: 20Gi
+    storageClass: ""
 keycloak:
   allowed_origins: ""
   auth_server_url: ""
