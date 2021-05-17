@@ -49,6 +49,7 @@ secret:
   highlighttokenpassword: ""
   sage_machinelearning_client_password: ""
   postgres_password: ""
+  license_key: ""
 cloud_aws:
   stack:
     auto: ""
