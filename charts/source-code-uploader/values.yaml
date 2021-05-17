@@ -5,22 +5,24 @@
 replicaCount: 1
 
 name: uploader
-namespace: sage
+namespace: 
+
+imagePullSecrets: 
 
 image:
-  repository: sourceuploader
-  imagePullSecrets: regcred
+  repository:
+  
 
 container:
   port: 8080
   env:
-    sage_url:
+    sage_url: 
     sage_http_protocol: "https://"
     git_server_ip_address: ""
     git_cli_protocol: "https"
-    git_user: oauth
-    git_user_email:
-
+    git_user: 
+    git_user_email: 
+    git_group: 
 service:
   type: ClusterIP
   ports:
@@ -30,14 +32,14 @@ service:
 
 secret:
   data:
-    gituser:
-    gitpassword:
+    gituser: 
+    gitpassword: 
 
 keycloak:
   allowed_origins:
   auth_server_url:
-  realm: appmod
-
+  realm: 
+  
 ingress:
   enabled: true
   hosts:
@@ -47,10 +49,10 @@ ingress:
   labels:
     # Used to add custom labels to the Ingress
     # Useful if for example you have multiple Ingress controllers and want your Ingress controllers to bind to specific Ingresses
-    application: source-code-uploader
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: "true"
+    # traffic: internal
+  annotations: {}
+    #kubernetes.io/ingress.class: nginx
+    #kubernetes.io/tls-acme: "true"
   tls:
     - secretName: tls-sample.com
       hosts:
