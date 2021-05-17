@@ -5,24 +5,24 @@
 replicaCount: 1
 
 name: uploader
-namespace: 
+namespace:
 
-imagePullSecrets: 
+imagePullSecrets:
 
 image:
   repository:
-  
+
 
 container:
   port: 8080
   env:
-    sage_url: 
+    sage_url:
     sage_http_protocol: "https://"
     git_server_ip_address: ""
     git_cli_protocol: "https"
-    git_user: 
-    git_user_email: 
-    git_group: 
+    git_user:
+    git_user_email:
+    git_group:
 service:
   type: ClusterIP
   ports:
@@ -32,14 +32,14 @@ service:
 
 secret:
   data:
-    gituser: 
-    gitpassword: 
+    gituser:
+    gitpassword:
 
 keycloak:
   allowed_origins:
   auth_server_url:
-  realm: 
-  
+  realm:
+
 ingress:
   enabled: true
   hosts:

@@ -61,4 +61,3 @@ spec:
             value: {{ .Values.container.env.git_user_email }}
           - name: GIT_GROUP
             value: {{ .Values.container.env.git_group }}
-
