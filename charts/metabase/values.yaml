@@ -157,3 +157,7 @@ postgresql:
    # PostgreSQL Database to create
    postgresqlDatabase: metabase
    # Persistent Volume Storage configuration
+
+admin:
+   username:
+   password:
