@@ -55,6 +55,16 @@ entries:
   highlight-agent:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-06-10T17:36:26.664192479Z"
+    description: A Helm chart for the Cast Highlight Agent Service
+    digest: ec2ee45c108e2e3067f260371ec11b22100aab6ffeff01b4864307a3b1a39df8
+    name: highlight-agent
+    type: application
+    urls:
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/highlight-agent-1.0.3/highlight-agent-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-01-29T15:59:35.163649593Z"
     description: A Helm chart for the Cast Highlight Agent Service
     digest: ea5f138220c68855163e23cc0343787b030ca6cdcc541369d9409a34ec289a37
