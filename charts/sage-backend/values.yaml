@@ -91,9 +91,10 @@ postgresql:
   enabled: false
   annotations:
     app: sage-database
-  image:
-    pullSecrets: ""
-    pullPolicy: "IfNotPresent"
+  common:
+    image:
+      pullSecrets: ""
+      pullPolicy: "IfNotPresent"
   persistence:
     mountPath: /var/lib/postgresql/data
     subPath: sagedb
