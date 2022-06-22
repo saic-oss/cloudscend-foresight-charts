@@ -30,6 +30,7 @@ keycloak:
   allowed_origins:
   auth_server_url:
   realm:
+  resource:
 
 env:
   advisor_reports_dir: /AMaaS/advisor-reports

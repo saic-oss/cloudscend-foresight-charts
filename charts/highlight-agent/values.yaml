@@ -65,6 +65,7 @@ keycloak:
   allowed_origins:
   auth_server_url:
   realm:
+  resource:
 
 ingress:
   enabled: true

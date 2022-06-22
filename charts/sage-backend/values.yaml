@@ -21,6 +21,7 @@ keycloak:
   allowed_origins: ""
   auth_server_url: ""
   realm: appmod
+  resource: ""
 env:
   database_username: ""
   database_url: ""
@@ -90,9 +91,10 @@ postgresql:
   enabled: false
   annotations:
     app: sage-database
-  image:
-    pullSecrets: ""
-    pullPolicy: "IfNotPresent"
+  common:
+    image:
+      pullSecrets: ""
+      pullPolicy: "IfNotPresent"
   persistence:
     mountPath: /var/lib/postgresql/data
     subPath: sagedb

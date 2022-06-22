@@ -68,9 +68,10 @@ istio:
 ##### POSTGRES Configuration
 postgresql:
   enabled: false
-  image:
-    pullSecrets: ""
-    pullPolicy: "IfNotPresent"
+  common:
+    image:
+      pullSecrets: ""
+      pullPolicy: "IfNotPresent"
   persistence:
     mountPath: /var/lib/postgresql/data
     subPath: commondata
