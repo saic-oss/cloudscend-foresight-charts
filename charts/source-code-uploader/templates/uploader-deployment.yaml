@@ -29,7 +29,7 @@ spec:
         "--keycloak.auth-server-url={{ .Values.keycloak.auth_server_url }}",
         "--keycloak.ssl-required=none",
         "--keycloak.realm={{ .Values.keycloak.realm }}",
-        "--keycloak.resource=sage",
+        "--keycloak.resource={{ .Values.keycloak.resource }}",
         "--keycloak.bearer-only=true",
         "--keycloak.autodetect-bearer-only=true",
         "--keycloak.enable-basic-auth=false",
