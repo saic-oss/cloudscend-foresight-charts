@@ -100,11 +100,10 @@ postgresql:
     subPath: sagedb
     size: 20Gi
     storageClass: aws-efs
-  postgresql:
-    # PostgreSQL User to create
-    postgresqlUsername: sage-db
-    # PostgreSQL Password for the new user
-    postgresqlPassword: ""
-    # PostgreSQL Database to create
-    postgresqlDatabase: sage-db
-    # Persistent Volume Storage configuration
+  # PostgreSQL User to create
+  postgresqlUsername: sage-db
+  # PostgreSQL Password for the new user
+  postgresqlPassword: ""
+  # PostgreSQL Database to create
+  postgresqlDatabase: sage-db
+  # Persistent Volume Storage configuration

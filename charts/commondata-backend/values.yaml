@@ -78,11 +78,10 @@ postgresql:
     subPath: commondata
     size: 20Gi
     storageClass: aws-efs
-  postgresql:
-    # PostgreSQL User to create
-    postgresqlUsername: commondata-db
-    # PostgreSQL Password for the new user
-    postgresqlPassword:
-    # PostgreSQL Database to create
-    postgresqlDatabase: commondata-db
-    # Persistent Volume Storage configuration
+  # PostgreSQL User to create
+  postgresqlUsername: commondata-db
+  # PostgreSQL Password for the new user
+  postgresqlPassword:
+  # PostgreSQL Database to create
+  postgresqlDatabase: commondata-db
+  # Persistent Volume Storage configuration
