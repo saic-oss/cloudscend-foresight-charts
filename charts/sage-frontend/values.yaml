@@ -38,6 +38,11 @@ configMap:
     kibana_url: ""
   staticLinksConfig:
     help_center_url: ""
+  embedConfig:
+    cast_hl_saml_url: ""
+    oidc_or_saml: ""
+    superset_metrics_url: ""
+    superset_metric_dashboard_number: ""
 
 ingress:
   enabled: true

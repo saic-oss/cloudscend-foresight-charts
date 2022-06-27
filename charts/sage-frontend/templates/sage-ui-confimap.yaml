@@ -39,6 +39,14 @@ data:
         KIBANA_URL: {{ .Values.configMap.navigationMenuConfig.kibana_url | quote }}
       };
 
+      window.__env.EMBED_CONFIG = {
+        CAST_HL_SAML_URL:{{ .Values.configMap.embedConfig.cast_hl_saml_url | quote }},
+        SONARQUBE_OIDC_OR_SAML: {{ .Values.configMap.embedConfig.oidc_or_saml | quote }},
+        SUPERSET_METRICS_URL: {{ .Values.configMap.embedConfig.superset_metrics_url | quote }},
+        SUPERSET_METRIC_DASHBOARD_NUM: {{ .Values.configMap.embedConfig.superset_metric_dashboard_num | quote}},
+      };
+
+
       window.__env.STATIC_LINKS = {
         TERMS_OF_USE_URL: '',
         ABOUT_URL: '',

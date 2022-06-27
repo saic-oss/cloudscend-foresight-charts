@@ -58,6 +58,8 @@ spec:
                   name: {{ .Values.name }}-secrets
             - name: KEYCLOAKADMIN_KEYCLOAK_URL
               value: {{ .Values.container.args.keycloak.keycloak_auth_server_url }}
+            - name: KEYCLOAK_REALM
+              value: {{ .Values.container.args.keycloak.keycloak_realm }}
             - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:

@@ -34,6 +34,7 @@ container:
       keycloak_principal_attribute: preferred_username
       keycloak_master_username:
       keycloak_master_password:
+      keycloak_realm:
 
 database_username: commondata-db-user
 database_url:
@@ -77,10 +78,11 @@ postgresql:
     subPath: commondata
     size: 20Gi
     storageClass: aws-efs
-  # PostgreSQL User to create
-  postgresqlUsername: commondata-db
-  # PostgreSQL Password for the new user
-  postgresqlPassword:
-  # PostgreSQL Database to create
-  postgresqlDatabase: commondata-db
-  # Persistent Volume Storage configuration
+  postgresql:
+    # PostgreSQL User to create
+    postgresqlUsername: commondata-db
+    # PostgreSQL Password for the new user
+    postgresqlPassword:
+    # PostgreSQL Database to create
+    postgresqlDatabase: commondata-db
+    # Persistent Volume Storage configuration
