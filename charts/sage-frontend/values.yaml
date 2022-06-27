@@ -42,7 +42,7 @@ configMap:
     cast_hl_saml_url: ""
     oidc_or_saml: ""
     superset_metrics_url: ""
-    superset_metric_dashboard_number: ""
+    superset_metric_dashboard_num: ""
 
 ingress:
   enabled: true
