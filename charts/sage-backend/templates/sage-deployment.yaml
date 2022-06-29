@@ -88,7 +88,7 @@ spec:
         - name: SAGE_REPORT_URL
           value: {{ .Values.env.sage_report_url }}
         - name: KEYCLOAKADMIN_KEYCLOAK_URL
-          value: {{ .Values.keycloak.auth_server_url }} #this value is the same
+          value: {{ .Values.keycloak.admin_auth_server_url }} #this value is the same
         - name: KEYCLOAK_REALM
           value: {{ .Values.keycloak.realm }}
         - name: QUEUE_ANALYSIS_URL
