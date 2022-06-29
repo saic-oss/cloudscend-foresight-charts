@@ -3,9 +3,9 @@ entries:
   cast-hl:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-06-28T17:59:32.805285451Z"
+    created: "2022-06-29T16:54:22.058978032Z"
     description: A Helm chart for Kubernetes
-    digest: d0c75a52a34abe9be90ac2b6c902af7c03de3ff87341de1b65b53393928e6eaf
+    digest: 0438a60135c5fb9908e4d6f342ca11ac0b93de1e88636287b98657782f60f802
     name: cast-hl
     type: application
     urls:
@@ -14,25 +14,25 @@ entries:
   commondata-backend:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-28T17:59:33.011131716Z"
+    created: "2022-06-29T16:54:22.25945473Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: 10.14.4
     description: A Helm chart for the Sage Commondata API service
-    digest: 07533c630c2849f916fa181f2556fe75c01c9889fb16b87d5d0992d3879b477a
+    digest: 4cdf13a891318a6708150265c0e5f7c2380bd31159b532ce36de30d29c947e68
     name: commondata-backend
     type: application
     urls:
-    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/commondata-backend-1.0.5/commondata-backend-1.0.5.tgz
-    version: 1.0.5
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/commondata-backend-1.0.6/commondata-backend-1.0.6.tgz
+    version: 1.0.6
   highlight-agent:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-28T17:59:33.200542998Z"
+    created: "2022-06-29T16:54:22.454872637Z"
     description: A Helm chart for the Cast Highlight Agent Service
-    digest: 6645ae16c35bd952b1afb82fc766b8f84915b0bdf5ae3f51d76bb5ef7f8117c7
+    digest: 60f91a01e6e0ad65960b0b8cfd5fe7d91bb9824a1f1550512dd002fe55a1b5e6
     name: highlight-agent
     type: application
     urls:
@@ -41,9 +41,9 @@ entries:
   reportservice:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-28T17:59:33.389322024Z"
+    created: "2022-06-29T16:54:22.657053065Z"
     description: A Helm chart for the Sage Report Service
-    digest: 2343649c4be7c008b5553267495c3e360cbc3a6009070a5d6f0b3ac13ebcbf9b
+    digest: 705fda352946a78ec2485034ee391aad4640e2f53e90685081cc34f8f8777bb7
     name: reportservice
     type: application
     urls:
@@ -52,25 +52,25 @@ entries:
   sage-backend:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-28T17:59:33.575305401Z"
+    created: "2022-06-29T16:54:22.859377328Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://charts.bitnami.com/bitnami
       version: 10.14.4
     description: A Helm chart for the Sage Backend API service
-    digest: 47fe9b8167e7d9bdf38656624a3a8843ef235cff845ffdada88f52c791bee136
+    digest: bec0ff667524473c3125e45e76a17f578b0b686d2c7090e5617d9cea8f54e419
     name: sage-backend
     type: application
     urls:
-    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/sage-backend-1.0.8/sage-backend-1.0.8.tgz
-    version: 1.0.8
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/sage-backend-1.0.9/sage-backend-1.0.9.tgz
+    version: 1.0.9
   sage-frontend:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-06-28T17:59:33.778883357Z"
+    created: "2022-06-29T16:54:23.05866254Z"
     description: A Helm chart for the Sage Frontend Service
-    digest: 506a3f99cc9bd4669ba7a7d97e8a8fab02a0014f65f24f3bf6be31eeda1e9c1d
+    digest: 53451ec9573353c178a856b4fd0293be013cd9661521be8b10bb73534291f8f7
     name: sage-frontend
     type: application
     urls:
@@ -79,9 +79,9 @@ entries:
   sage-ml:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-28T17:59:33.989984218Z"
+    created: "2022-06-29T16:54:23.263547413Z"
     description: A Helm chart for Kubernetes
-    digest: b9ac8436b57d4600631c677ade9ff161ca36a3e2f897dff01832186c810f3d8a
+    digest: 042456593d087a50f7227f558592157deb9c6c70fbb1c3a0630189210aabeb13
     name: sage-ml
     type: application
     urls:
@@ -90,12 +90,12 @@ entries:
   uploader:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-06-28T17:59:34.187242159Z"
+    created: "2022-06-29T16:54:23.473904476Z"
     description: A Helm chart for the Source Code Uploader Service
-    digest: f607df87a634737b38c1b29fb9c3700ddbbb1f49d890a29b8324987fbb11b202
+    digest: 701cffbbe6d97426c70ba122a85043a42d23938a4cc95f3137dbafe3c52b2ef1
     name: uploader
     type: application
     urls:
     - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/uploader-1.0.4/uploader-1.0.4.tgz
     version: 1.0.4
-generated: "2022-06-28T17:59:32.327634874Z"
+generated: "2022-06-29T16:54:21.47598509Z"
