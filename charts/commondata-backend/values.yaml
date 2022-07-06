@@ -35,6 +35,7 @@ container:
       keycloak_master_username:
       keycloak_master_password:
       keycloak_admin_auth_server_url: 
+      keycloak_admin_realm:
 
 database_username: commondata-db-user
 database_url:

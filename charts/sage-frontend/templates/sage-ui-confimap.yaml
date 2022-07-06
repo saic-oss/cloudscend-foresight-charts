@@ -36,7 +36,12 @@ data:
         CAST_HL_URL: {{ .Values.configMap.navigationMenuConfig.cast_hl_url | quote }},
         SONARQUBE_URL: {{ .Values.configMap.navigationMenuConfig.sonarqube_url | quote }},
         METABASE_URL: {{ .Values.configMap.navigationMenuConfig.metabase_url | quote }},
-        KIBANA_URL: {{ .Values.configMap.navigationMenuConfig.kibana_url | quote }}
+        KIBANA_URL: {{ .Values.configMap.navigationMenuConfig.kibana_url | quote }},
+        CAST_MRI_URL: {{ .Values.configMap.navigationMenuConfig.cast_mri_url | quote }},
+        DEEP_ANALYSIS_DASHBOARD_URL: {{ .Values.configMap.navigationMenuConfig.deep_analysis_dashboard_url | quote }},
+        DYNATRACE_URL: {{ .Values.configMap.navigationMenuConfig.dynatrace_url | quote }},
+        O_AND_M_URL: {{ .Values.configMap.navigationMenuConfig.o_and_m_url | quote }},
+        APTIO_URL: {{ .Values.configMap.navigationMenuConfig.aptio_url | quote }}
       };
 
       window.__env.EMBED_CONFIG = {

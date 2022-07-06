@@ -23,6 +23,7 @@ keycloak:
   realm: appmod
   resource: ""
   admin_auth_server_url: ""
+  keycloak_admin_realm: ""
 env:
   database_username: ""
   database_url: ""

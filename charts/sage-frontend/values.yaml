@@ -36,6 +36,11 @@ configMap:
     sonarqube_url: ""
     metabase_url: ""
     kibana_url: ""
+    cast_mri_url: ""
+    deep_analysis_dashboard_url: ""
+    dynatrace_url: ""
+    o_and_m_url: ""
+    aptio_url: ""
   staticLinksConfig:
     help_center_url: ""
   embedConfig:
