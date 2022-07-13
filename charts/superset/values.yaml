@@ -38,17 +38,17 @@ bootstrapScript: |
   pip install \
     psycopg2-binary==2.9.1 \
     redis==3.5.3 && \
-  if [ ! -f ~/bootstrap ]; then echo "Running Superset with uid {{ .Values.runAsUser }}" > ~/bootstrap; fi
+  if [ ! -f ~/bootstrap ]; then echo "Running Superset with uid 0" > ~/bootstrap; fi
 
 ## The name of the secret which we will use to generate a superset_config.py file
 ## Note: this secret must have the key superset_config.py in it and can include other files as well
 ##
-configFromSecret: '{{ template "superset.fullname" . }}-config'
+configFromSecret: 'superset-config'
 
 ## The name of the secret which we will use to populate env vars in deployed pods
 ## This can be useful for secret keys, etc.
 ##
-envFromSecret: '{{ template "superset.fullname" . }}-env'
+envFromSecret: 'superset-env'
 ## This can be a list of template strings
 envFromSecrets: []
 
@@ -156,14 +156,14 @@ configOverridesFiles: {}
 
 configMountPath: "/app/pythonpath"
 
-
+## Edit this to match your keycloak
 client_secret: |
-  {  
+  {
     "web": {
           "issuer": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud",
           "auth_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/auth",
           "client_id": "superset",
-          "client_secret": "dd316fbf-934e-48f7-a1de-46bcc4431a81",
+          "client_secret": "",
           "redirect_urls": [
               "http://localhost:8088/*"
           ],
@@ -180,12 +180,12 @@ login_redirect: ""
 extraConfigMountPath: "/app/configs"
 
 image:
-  repository: registry.gitlab.sif.saicdevops.com/appmod/helm-charts/superset
-  tag: custom-image-2
+  repository:
+  tag:
   pullPolicy: IfNotPresent
 
 imagePullSecrets:
-  - name: sif-ga-token
+  - name:
 
 
 service:
@@ -241,11 +241,11 @@ supersetNode:
   command:
     - "/bin/sh"
     - "-c"
-    - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; /usr/bin/run-server.sh"
+    - ". /app/pythonpath/superset_bootstrap.sh; /usr/bin/run-server.sh"
   connections:
-    redis_host: '{{ template "superset.fullname" . }}-redis-headless'
+    redis_host: 'superset-redis-headless'
     redis_port: "6379"
-    db_host: '{{ template "superset.fullname" . }}-postgresql'
+    db_host: 'superset-postgresql'
     db_port: "5432"
     db_user: superset
     db_pass: superset
@@ -258,7 +258,7 @@ supersetNode:
       imagePullPolicy: IfNotPresent
       envFrom:
         - secretRef:
-            name: '{{ tpl .Values.envFromSecret . }}'
+            name: 'superset-env'
       command: [ "/bin/sh", "-c", "until nc -zv $DB_HOST $DB_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
   ## Annotations to be added to supersetNode deployment
   deploymentAnnotations: {}
@@ -271,7 +271,7 @@ supersetWorker:
   command:
     - "/bin/sh"
     - "-c"
-    - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; celery --app=superset.tasks.celery_app:app worker; pip install flask-OIDC"
+    - ". /app/pythonpath/superset_bootstrap.sh; celery --app=superset.tasks.celery_app:app worker; pip install flask-OIDC"
   forceReload: false # If true, forces deployment to reload on each upgrade
   initContainers:
     - name: wait-for-postgres
@@ -279,7 +279,7 @@ supersetWorker:
       imagePullPolicy: IfNotPresent
       envFrom:
         - secretRef:
-            name: '{{ tpl .Values.envFromSecret . }}'
+            name: 'superset-env'
       command: [ "/bin/sh", "-c", "until nc -zv $DB_HOST $DB_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
   ## Annotations to be added to supersetWorker deployment
   deploymentAnnotations: {}
@@ -294,7 +294,7 @@ supersetCeleryBeat:
   command:
     - "/bin/sh"
     - "-c"
-    - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; celery --app=superset.tasks.celery_app:app beat --pidfile /tmp/celerybeat.pid --schedule /tmp/celerybeat-schedule"
+    - ". /app/pythonpath/superset_bootstrap.sh; celery --app=superset.tasks.celery_app:app beat --pidfile /tmp/celerybeat.pid --schedule /tmp/celerybeat-schedule"
   forceReload: false # If true, forces deployment to reload on each upgrade
   initContainers:
     - name: wait-for-postgres
@@ -302,7 +302,7 @@ supersetCeleryBeat:
       imagePullPolicy: IfNotPresent
       envFrom:
         - secretRef:
-            name: '{{ tpl .Values.envFromSecret . }}'
+            name: 'superset-env'
       command: [ "/bin/sh", "-c", "until nc -zv $DB_HOST $DB_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
   ## Annotations to be added to supersetCeleryBeat deployment
   deploymentAnnotations: {}
@@ -325,24 +325,19 @@ init:
   command:
     - "/bin/sh"
     - "-c"
-    - ". {{ .Values.configMountPath }}/superset_bootstrap.sh; . {{ .Values.configMountPath }}/superset_init.sh"
+    - ". /app/pythonpath/superset_bootstrap.sh; . /app/pythonpath/superset_init.sh"
   enabled: true
   loadExamples: false
   createAdmin: true
-  adminUser:
-    username: admin
-    firstname: Superset
-    lastname: Admin
-    email: admin@superset.com
-    password: GreatTimes!
   initContainers:
     - name: wait-for-postgres
       image: busybox:latest
       imagePullPolicy: IfNotPresent
       envFrom:
         - secretRef:
-            name: '{{ tpl .Values.envFromSecret . }}'
+            name: 'superset-env'
       command: [ "/bin/sh", "-c", "until nc -zv $DB_HOST $DB_PORT -w1; do echo 'waiting for db'; sleep 1; done" ]
+  ##Admin account creation is in this script for this helm chart - Update the "superset fab create-admin" lines
   initscript: |-
     #!/bin/sh
     set -eu
@@ -350,23 +345,18 @@ init:
     superset db upgrade
     echo "Initializing roles..."
     superset init
-    {{ if .Values.init.createAdmin }}
     echo "Creating admin user..."
     superset fab create-admin \
-                    --username {{ .Values.init.adminUser.username }} \
-                    --firstname {{ .Values.init.adminUser.firstname }} \
-                    --lastname {{ .Values.init.adminUser.lastname }} \
-                    --email {{ .Values.init.adminUser.email }} \
-                    --password {{ .Values.init.adminUser.password }} \
+                    --username admin \
+                    --firstname Superset \
+                    --lastname Admin \
+                    --email admin@superset.com \
+                    --password GreatTimes! \
                     || true
     {{- end }}
-    {{ if .Values.init.loadExamples }}
-    echo "Loading examples..."
-    superset load_examples
-    {{- end }}
-    if [ -f "{{ .Values.extraConfigMountPath }}/import_datasources.yaml" ]; then
+    if [ -f "/app/configs/import_datasources.yaml" ]; then
       echo "Importing database connections.... "
-      superset import_datasources -p {{ .Values.extraConfigMountPath }}/import_datasources.yaml
+      superset import_datasources -p /app/configs/import_datasources.yaml
     fi
   ## Annotations to be added to init job pods
   podAnnotations: {}
@@ -377,20 +367,20 @@ postgresql:
   ##
   ## Use the PostgreSQL chart dependency.
   ## Set to false if bringing your own PostgreSQL.
-  enabled: true
-  ##
-  ## The name of an existing secret that contains the postgres password.
-  existingSecret:
-  ## Name of the key containing the secret.
-  existingSecretKey: postgresql-password
-  ##
-  ## If you are bringing your own PostgreSQL, you should set postgresHost and
-  ## also probably service.port, postgresqlUsername, postgresqlPassword, and postgresqlDatabase
-  ## postgresHost:
-  ##
-  ## PostgreSQL port
-  service:
-    port: 5432
+  enabled: false
+
+  annotations:
+    app: sage-database
+  common:
+    image:
+      pullSecrets: ""
+      pullPolicy: "IfNotPresent"
+  persistence:
+    mountPath: /var/lib/postgresql/data
+    subPath: sagedb
+    size: 20Gi
+    storageClass: aws-efs
+
   ## PostgreSQL User to create.
   postgresqlUsername: superset
   ##

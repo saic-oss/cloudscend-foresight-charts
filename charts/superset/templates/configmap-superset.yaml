@@ -18,7 +18,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "superset.fullname" . }}-extra-config
+  name: superset-extra-config
   labels:
     app: {{ template "superset.name" . }}
     chart: {{ template "superset.chart" . }}

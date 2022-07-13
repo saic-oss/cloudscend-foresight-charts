@@ -79,7 +79,7 @@ class AuthOIDCView(AuthOIDView):
     def login(self, flag=True):
         sm = self.appbuilder.sm
         oidc = sm.oid
-        superset_dashboard_url = {{ .Values.login_redirect }}
+        superset_dashboard_url = '{{ .Values.login_redirect }}'
         @self.appbuilder.sm.oid.require_login
         def handle_login():
             user = sm.auth_user_oid(oidc.user_getfield('email'))
@@ -90,7 +90,7 @@ class AuthOIDCView(AuthOIDView):
             login_user(user, remember=False)
             return redirect(superset_dashboard_url)
         return handle_login()
-        
+
     @expose('/logout/', methods=['GET', 'POST'])
     def logout(self):
         oidc = self.appbuilder.sm.oid
@@ -105,7 +105,7 @@ class OIDCSecurityManager(SupersetSecurityManager):
     def __init__(self,appbuilder):
         super(OIDCSecurityManager, self).__init__(appbuilder)
         if self.auth_type == AUTH_OID:
-            self.oid = OpenIDConnect(self.appbuilder.get_app) 
+            self.oid = OpenIDConnect(self.appbuilder.get_app)
 {{- end -}}
 
 {{- define "superset-config" }}
