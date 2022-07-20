@@ -100,7 +100,7 @@ extraSecrets: {}
 extraVolumes: []
  # - name: customConfig
  #   configMap:
- #     name: '{{ template "superset.fullname" . }}-custom-config'
+ #     name: 'superset-custom-config'
  # - name: additionalSecret
  #   secret:
  #     secretName: my-secret
@@ -163,7 +163,7 @@ client_secret: |
           "issuer": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud",
           "auth_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/auth",
           "client_id": "superset",
-          "client_secret": "",
+          "client_secret": "dd316fbf-934e-48f7-a1de-46bcc4431a81",
           "redirect_urls": [
               "http://localhost:8088/*"
           ],
@@ -176,8 +176,7 @@ client_secret: |
 
 login_redirect: ""
 
-openid_realm: ""
-
+openid_realm: "TCloud"
 
 extraConfigMountPath: "/app/configs"
 
@@ -355,7 +354,6 @@ init:
                     --email admin@superset.com \
                     --password GreatTimes! \
                     || true
-    {{- end }}
     if [ -f "/app/configs/import_datasources.yaml" ]; then
       echo "Importing database connections.... "
       superset import_datasources -p /app/configs/import_datasources.yaml
@@ -413,7 +411,7 @@ redis:
   ##
   ## Use the redis chart dependency.
   ## Set to false if bringing your own redis.
-  enabled: true
+  enabled: false
   usePassword: false
   ##
   ## The name of an existing secret that contains the redis password.

@@ -118,7 +118,7 @@ def env(key, default=None):
 MAPBOX_API_KEY = env('MAPBOX_API_KEY', '')
 CACHE_CONFIG = {
       'CACHE_TYPE': 'redis',
-      'CACHE_DEFAULT_TIMEOUT': 300,
+      'CACHE_DEFAULT_TIMEOUT': 400,
       'CACHE_KEY_PREFIX': 'superset_',
       'CACHE_REDIS_HOST': env('REDIS_HOST'),
       'CACHE_REDIS_PORT': env('REDIS_PORT'),
@@ -154,7 +154,7 @@ OIDC_CLIENT_SECRETS = '/app/pythonpath/client_secret.json'
 OIDC_ID_TOKEN_COOKIE_SECURE = False
 OIDC_REQUIRE_VERIFIED_EMAIL = False
 AUTH_USER_REGISTRATION = True
-OIDC_OPENID_REALM: 'TCloud'
+OIDC_OPENID_REALM: '{{ .Values.openid_realm }}'
 OIDC_INTROSPECTION_AUTH_METHOD: 'client_secret_post'
 AUTH_USER_REGISTRATION_ROLE = 'Gamma'
 
