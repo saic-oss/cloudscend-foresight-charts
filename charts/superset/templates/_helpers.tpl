@@ -86,7 +86,7 @@ class AuthOIDCView(AuthOIDView):
             info = oidc.user_getinfo(['preferred_username', 'email', 'sub'])
             if user is None:
                 info = oidc.user_getinfo(['preferred_username', 'given_name', 'family_name', 'email'])
-                user = user = sm.add_user(info.get('preferred_username'), info.get('given_name'), info.get('family_name'),info.get('email'), sm.find_role('Gamma'))
+                user = user = sm.add_user(info.get('preferred_username'), info.get('given_name'), info.get('family_name'),info.get('email'), sm.find_role('Admin'))
             login_user(user, remember=False)
             return redirect(superset_dashboard_url)
         return handle_login()
@@ -156,7 +156,7 @@ OIDC_REQUIRE_VERIFIED_EMAIL = False
 AUTH_USER_REGISTRATION = True
 OIDC_OPENID_REALM: '{{ .Values.openid_realm }}'
 OIDC_INTROSPECTION_AUTH_METHOD: 'client_secret_post'
-AUTH_USER_REGISTRATION_ROLE = 'Gamma'
+AUTH_USER_REGISTRATION_ROLE = 'Admin'
 
 class CeleryConfig(object):
   BROKER_URL = f"redis://{env('REDIS_HOST')}:{env('REDIS_PORT')}/0"
