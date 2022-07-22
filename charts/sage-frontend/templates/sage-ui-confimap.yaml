@@ -11,6 +11,7 @@ data:
       };
 
       window.__env.SAGE_APPLICATION_CONFIG = {
+        CUSTOMER: {{ .Values.configMap.sageConfig.flavor | quote }},
         SAGE_FRONTEND_URL: {{ .Values.configMap.sageConfig.sage_frontend_url | quote }},
         SAGE_BACKEND_URL: {{ .Values.configMap.sageConfig.sage_backend_url | quote }}
       };

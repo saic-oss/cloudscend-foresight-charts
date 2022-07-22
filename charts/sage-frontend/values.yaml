@@ -20,6 +20,7 @@ configMap:
     realm: appmod
     clientId: sage
   sageConfig:
+    flavor: ""
     sage_frontend_url: ""
     sage_backend_url: ""
   uploadConfig:
