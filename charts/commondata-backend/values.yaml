@@ -42,6 +42,7 @@ database_url:
 database_name: commondata
 database_password: #
 redis_host:
+foresight_backend_url:
 
 ingress:
   enabled: true

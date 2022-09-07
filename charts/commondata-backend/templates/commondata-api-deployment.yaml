@@ -51,6 +51,8 @@ spec:
               value: {{ .Values.redis_host }}
             - name: KEYCLOAKADMIN_MASTER_USERNAME
               value: {{ .Values.container.args.keycloak.keycloak_master_username }}
+            - name: APP_FORESIGHT_BACKENDURL
+              value: {{ .Values.foresight_backend_url }}
             - name: KEYCLOAKADMIN_MASTER_PASSWORD
               valueFrom:
                 secretKeyRef:
