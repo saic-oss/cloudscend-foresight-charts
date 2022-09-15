@@ -28,6 +28,7 @@ env:
   database_username: ""
   database_url: ""
   database_name: sage
+  database_schema:
   advisor_analysis_url: ""
   advisor_reports_url: ""
   common_data_url: ""

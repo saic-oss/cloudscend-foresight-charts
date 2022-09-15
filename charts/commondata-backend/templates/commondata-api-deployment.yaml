@@ -47,6 +47,8 @@ spec:
               value: {{ .Values.database_url }}
             - name: DATABASE_NAME
               value: {{ .Values.database_name }}
+            - name: DATABASE_SCHEMA
+              value: {{ .Values.database_schema }}
             - name: REDIS_HOST
               value: {{ .Values.redis_host }}
             - name: KEYCLOAKADMIN_MASTER_USERNAME

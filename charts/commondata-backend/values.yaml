@@ -40,6 +40,7 @@ container:
 database_username: commondata-db-user
 database_url:
 database_name: commondata
+database_schema:
 database_password: #
 redis_host:
 foresight_backend_url:
