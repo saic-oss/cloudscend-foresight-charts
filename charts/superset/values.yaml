@@ -82,17 +82,20 @@ extraSecretEnv: {}
   # GOOGLE_KEY: ...
   # GOOGLE_SECRET: ...
 
+supersetDatabase_name: sage
+
+#This is used to load in a database
 extraConfigs: {}
   # datasources-init.yaml: |
   #     databases:
   #     - allow_file_upload: true
   #       allow_ctas: true
   #       allow_cvas: true
-  #       database_name: example-db
+  #       database_name: {{ .Values.supersetDatabase_name }}
   #       extra: "{\r\n    \"metadata_params\": {},\r\n    \"engine_params\": {},\r\n    \"\
   #         metadata_cache_timeout\": {},\r\n    \"schemas_allowed_for_file_upload\": []\r\n\
   #         }"
-  #       sqlalchemy_uri: example://example-db.local
+  #       sqlalchemy_uri: postgresql://username:password@sage-backend-dev-postgresql.sage-develop.svc.cluster.local:5432/sage
   #       tables: []
 
 extraSecrets: {}
@@ -181,10 +184,11 @@ openid_realm: ""
 
 extraConfigMountPath: "/app/configs"
 
+#Currently goes to a SAIC repository, very basic image. No real adjustments to it.
 image:
-  repository:
-  tag:
-  pullPolicy: IfNotPresent
+  repository: registry.gitlab.sif.saicdevops.com/appmod/helm-charts/superset
+  tag: custom-image-2
+  pullPolicy: Always
 
 imagePullSecrets:
   - name:
@@ -210,7 +214,7 @@ ingress:
   path: /
   pathType: ImplementationSpecific
   hosts:
-    - superset-tcloud-dev.c1d.saicappmod.com
+    - dns-name-for-superset.com
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -330,6 +334,7 @@ init:
     - ". /app/pythonpath/superset_bootstrap.sh; . /app/pythonpath/superset_init.sh"
   enabled: true
   loadExamples: false
+  #Set this as false if using a persistent database
   createAdmin: true
   initContainers:
     - name: wait-for-postgres
@@ -356,9 +361,11 @@ init:
                     --password GreatTimes! \
                     || true
     {{- end }}
+    superset fab import_roles -p {{ .Values.configMountPath }}/update_superset_roles.json
     if [ -f "/app/configs/import_datasources.yaml" ]; then
       echo "Importing database connections.... "
-      superset import_datasources -p /app/configs/import_datasources.yaml
+      superset import_datasources -p {{ .Values.extraConfigMountPath }}/import_datasources.yaml
+      superset import_dashboards -p {{ .Values.configMountPath }}/import_foresight_dashboards.json
     fi
   ## Annotations to be added to init job pods
   podAnnotations: {}
