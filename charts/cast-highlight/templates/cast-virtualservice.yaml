@@ -15,10 +15,4 @@ spec:
             host: {{ .Values.server.name }}
             port:
               number: {{ .Values.server.container.port }}
-          headers:
-            response:
-              remove:
-              - X-Frame-Options
-              set:
-                location: https://{{ .Values.server.istio.host }}
 {{- end }}
