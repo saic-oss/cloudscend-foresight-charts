@@ -64,6 +64,8 @@ spec:
             secretKeyRef:
               key: keycloakadminpassword
               name: {{ .Values.name }}-secret
+        - name: KEYCLOAK_AUTH_SERVER_URL
+          value: {{ .Values.keycloak.auth_server_url}}
         - name: APP_KEYCLOAK_ADMINREALM
           value: {{ .Values.keycloak.keycloak_admin_realm }}
         - name: DATABASE_USERNAME
