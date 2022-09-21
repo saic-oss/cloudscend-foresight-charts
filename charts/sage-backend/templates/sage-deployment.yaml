@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -167,3 +168,174 @@ spec:
       name: http
   selector:
     app: {{ .Values.name }}
+=======
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      volumes:
+      - name: {{ .Values.spec.volumes.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.spec.volumes.name }}
+      - name: license-key
+        secret:
+          secretName: {{ .Values.name }}-secret
+          items:
+            - key: license_key
+              path: license.txt
+      {{ if .Values.imagePullSecrets.name }}
+      imagePullSecrets:
+        -  name:  {{ .Values.imagePullSecrets.name }}
+      {{ end }}
+      containers:
+      - name: {{ .Values.name }}
+        imagePullPolicy: {{ .Values.spec.containers.imagePullPolicy }}
+        image: {{ .Values.spec.containers.image }}
+        ports:
+        - containerPort: {{ .Values.spec.containers.ports.containerPort }}
+        args: ["--app.cors.allowed-origins[0]={{ .Values.keycloak.allowed_origins }}",
+        "--app.cors.allowed-origins[1]=http://localhost:4200",
+        "--keycloak.enabled=true",
+        "--keycloak.auth-server-url={{ .Values.keycloak.auth_server_url }}",
+        "--keycloak.ssl-required=none",
+        "--keycloak.realm={{ .Values.keycloak.realm }}",
+        "--keycloak.resource={{ .Values.keycloak.resource }}",
+        "--keycloak.bearer-only=true",
+        "--keycloak.autodetect-bearer-only=true",
+        "--keycloak.enable-basic-auth=false",
+        "--keycloak.use-resource-role-mappings=false",
+        "--keycloak.public-client=true",
+        "--keycloak.principal-attribute=preferred_username"]
+        volumeMounts:
+        - name: {{ .Values.spec.volumes.name }}
+          mountPath: /AMaaS/sage/reports
+        - name: license-key
+          mountPath: /etc/sage
+        env:
+        - name: KEYCLOAKADMIN_MASTER_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: keycloakadminuser
+              name: {{ .Values.name }}-secret
+        - name: KEYCLOAKADMIN_MASTER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: keycloakadminpassword
+              name: {{ .Values.name }}-secret
+        - name: KEYCLOAK_AUTH_SERVER_URL
+          value: {{ .Values.keycloak.auth_server_url}}
+        - name: APP_KEYCLOAK_ADMINREALM
+          value: {{ .Values.keycloak.keycloak_admin_realm }}
+        - name: DATABASE_USERNAME
+          value: {{ .Values.env.database_username }}
+        - name: DATABASE_URL
+          value: {{ .Values.env.database_url }}
+        - name: DATABASE_NAME
+          value: {{ .Values.env.database_name }}
+        - name: DATABASE_SCHEMA
+          value: {{ .Values.env.database_schema }}
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: postgres_password
+              name: {{ .Values.name }}-secret
+        - name: ADVISOR_ANALYSIS_URL
+          value: {{ .Values.env.advisor_analysis_url }}
+        - name: ADVISOR_REPORTS_URL
+          value: {{ .Values.env.advisor_reports_url }}
+        - name: COMMON_DATA_URL
+          value: {{ .Values.env.common_data_url }}
+        - name: HIGHLIGHT_ANALYSIS_URL
+          value: {{ .Values.env.highlight_analysis_url }}
+        - name: HIGHLIGHT_REPORT_URL
+          value: {{ .Values.env.highlight_report_url }}
+        - name: SAGE_REPORT_URL
+          value: {{ .Values.env.sage_report_url }}
+        - name: KEYCLOAKADMIN_KEYCLOAK_URL
+          value: {{ .Values.keycloak.admin_auth_server_url }} #this value is the same
+        - name: KEYCLOAK_REALM
+          value: {{ .Values.keycloak.realm }}
+        - name: QUEUE_ANALYSIS_URL
+          value: {{ .Values.env.queue_analysis_url }}
+        - name: CAST_HIGHLIGHT_URL
+          value: {{ .Values.env.cast_highlight_url}}
+        - name: HIGHLIGHT_TOKEN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: highlighttokenusername
+              name: {{ .Values.name }}-secret
+        - name: HIGHLIGHT_TOKEN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: highlighttokenpassword
+              name: {{ .Values.name }}-secret
+        - name: CLOUD_AWS_STACK_AUTO
+          value: {{ .Values.cloud_aws.stack.auto | quote }}
+        - name: CLOUD_AWS_REGION_AUTO
+          value: {{ .Values.cloud_aws.region.auto | quote }}
+        - name: CLOUD_AWS_CREDS_INSTANCE_PROFILE
+          value: {{ .Values.cloud_aws.credentials.instanceProfile | quote }}
+        - name: CLOUD_AWS_REGION_STATIC
+          value: {{ .Values.cloud_aws.region.static }}
+        - name: CLOUD_AWS_CREDS_ACCESSKEY
+          valueFrom:
+            secretKeyRef:
+              key: awsAccessKey
+              name: {{ .Values.name }}-secret
+        - name: CLOUD_AWS_CREDS_SECRETKEY
+          valueFrom:
+            secretKeyRef:
+              key: awsSecretKey
+              name: {{ .Values.name }}-secret
+        - name: AWS_S3_BUCKET_NAME
+          value: {{ .Values.env.aws_bucket_name }}
+        - name: AWS_S3_ENABLED
+          value: {{ .Values.env.aws_s3_enabled | quote }}
+        - name: METABASE_SITE_URL
+          value: {{ .Values.env.metabase_site_url }}
+        - name: METABASE_DASHBOARD_NUMBER
+          value: {{ .Values.env.metabase_dashboard_number | quote }}
+        - name: METABASE_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              key: metabasesecretkey
+              name: {{ .Values.name }}-secret
+        - name: SAGE_MACHINELEARNING_URL
+          value: {{ .Values.env.sage_machinelearning_url }}
+        - name: SAGE_MACHINELEARNING_CLIENT_NAME
+          value: {{ .Values.env.sage_machinelearning_client_name }}
+        - name: SAGE_MACHINELEARNING_CLIENT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: sage_machinelearning_client_password
+              name: {{ .Values.name }}-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.spec.containers.ports.containerPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Values.name }}
+>>>>>>> 5d491fb (Updating chart to include keycloak server)
