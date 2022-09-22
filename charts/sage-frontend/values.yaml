@@ -9,7 +9,7 @@ imagePullSecrets:
 containers:
   image: sage-ui
   ports:
-    containerPort: 80
+    containerPort: 8080
   volumeMounts:
     mountPath: /usr/share/nginx/html/env.js
     name: sage-ui-volume
