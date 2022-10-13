@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  type: clusterIP
+  ports:
+  - port: {{ .Values.container.containerPort }}
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app: {{ .Values.name }}
