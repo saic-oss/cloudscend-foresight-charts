@@ -43,6 +43,7 @@ env:
   metabase_dashboard_number: ""
   sage_machinelearning_url: ""
   sage_machinelearning_client_name: ""
+  spring_kafka_bootstrap_servers: ""
 secret:
   username: ""
   password: ""

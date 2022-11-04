@@ -102,6 +102,8 @@ spec:
                 name: {{ .Values.name }}-secret
           - name: HIGHLIGHT_ADMINUSERNAME
             value: {{ .Values.containers.env.highlight_adminusername }}
+          - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+            value: {{ .Values.containers.env.spring_kafka_bootstrap_servers }}
         resources:
           limits:
             cpu: {{ .Values.containers.resources.limits.cpu }}

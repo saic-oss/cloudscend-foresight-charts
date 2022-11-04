@@ -27,3 +27,4 @@ data:
   WINDOWS_HOST: {{ .Values.env.windows_host }}
   WINDOWS_PORT: {{ .Values.env.windows_port | quote }}
   WINDOWS_PROTOCOL: {{ .Values.env.windows_protocol }}
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: {{ .Values.env.spring_kafka_bootstrap_servers }}

@@ -55,6 +55,8 @@ spec:
               value: {{ .Values.container.args.keycloak.keycloak_master_username }}
             - name: APP_FORESIGHT_BACKENDURL
               value: {{ .Values.foresight_backend_url }}
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: {{ .Values.spring_kafka_bootstrap_servers }}
             - name: KEYCLOAKADMIN_MASTER_PASSWORD
               valueFrom:
                 secretKeyRef:

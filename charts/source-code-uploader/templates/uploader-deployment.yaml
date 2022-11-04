@@ -61,3 +61,5 @@ spec:
             value: {{ .Values.container.env.git_user_email }}
           - name: GIT_GROUP
             value: {{ .Values.container.env.git_group }}
+          - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+            value: {{ .Values.container.env.spring_kafka_bootstrap_servers }}

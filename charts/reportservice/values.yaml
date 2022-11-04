@@ -53,6 +53,7 @@ env:
   windows_protocol:
   windows_port:
   windows_host:
+  spring_kafka_bootstrap_servers:
 
 ingress:
   enabled: true

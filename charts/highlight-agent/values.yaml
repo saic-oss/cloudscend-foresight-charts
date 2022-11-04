@@ -39,6 +39,7 @@ containers:
     highlight_app_timeout_minutes:
     highlight_app3rdparty_timeout_minutes:
     highlight_appdependency_timeout_minutes:
+    spring_kafka_bootstrap_servers:
   resources:
     limits:
       cpu: 2

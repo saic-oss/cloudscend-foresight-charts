@@ -151,6 +151,8 @@ spec:
             secretKeyRef:
               key: sage_machinelearning_client_password
               name: {{ .Values.name }}-secret
+        - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+          value: {{ .Values.env.spring_kafka_bootstrap_servers }}
 ---
 apiVersion: v1
 kind: Service
