@@ -27,6 +27,8 @@ env:
     git_cli_protocol:
     git_server_url:
     git_local_dir:
+    git_user:
+  spring_kafka_bootstrap_servers: ""
 
 secret:
   git_password:
