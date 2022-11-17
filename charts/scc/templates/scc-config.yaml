@@ -10,8 +10,9 @@ data:
   GIT_CLI_PROTOCOL: {{ .Values.env.git.git_cli_protocol | quote }}
   GIT_SERVIER_URL: {{ .Values.env.git.git_server_url | quote }}
   GIT_LOCAL_DIR: {{ .Values.env.git.git_local_dir | quote }}
+  GIT_USER: {{ .Values.env.git.git_user | quote }}
   KEYCLOAK_REALM: {{ .Values.env.keycloak.keycloak_realm | quote }}
   KEYCLOAK_AUTH_SERVER_URL: {{ .Values.env.keycloak.keycloak_auth_server_url | quote }}
   KEYCLOAK_RESOURCE: {{ .Values.env.keycloak.keycloak_resource | quote }}
-
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: {{ .Values.env.spring_kafka_bootstrap_servers | quote }}
 
