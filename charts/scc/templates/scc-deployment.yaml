@@ -15,10 +15,6 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
-      volumes:
-      - name: {{ .Values.volumes.name }}
-        persistentVolumeClaim:
-          claimName: {{ .Values.volumes.persistentVolumeClaim }}
       {{ if .Values.imagePullSecret }}
       imagePullSecrets:
         - name: {{ .Values.imagePullSecret.name }}
