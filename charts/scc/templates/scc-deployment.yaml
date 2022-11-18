@@ -39,7 +39,6 @@ spec:
         envFrom:
           - configMapRef:
               name: {{ .Values.name }}-config
-        envFrom:
           - secretRef:
               name: {{ .Values.name }}-secret
         ports:
