@@ -8,7 +8,7 @@ metadata:
 data:
   FORESIGHT_BACKEND_URL: {{ .Values.env.foresight_backend_url | quote }}
   GIT_CLI_PROTOCOL: {{ .Values.env.git.git_cli_protocol | quote }}
-  GIT_SERVIER_URL: {{ .Values.env.git.git_server_url | quote }}
+  GIT_SERVER_URL: {{ .Values.env.git.git_server_url | quote }}
   GIT_LOCAL_DIR: {{ .Values.env.git.git_local_dir | quote }}
   GIT_USER: {{ .Values.env.git.git_user | quote }}
   KEYCLOAK_REALM: {{ .Values.env.keycloak.keycloak_realm | quote }}
