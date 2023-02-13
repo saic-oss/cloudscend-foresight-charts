@@ -27,7 +27,7 @@ tasks:
       - helm repo list | grep "bitnami"
     cmds:
       - helm repo add bitnami https://charts.bitnami.com/bitnami
-      - helm repo add bitnami-pre-2022 https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      - helm repo add bitnami-pre-2022 https://raw.githubusercontent.com/bitnami/charts/pre-2022/bitnami
 
   test:
     desc: Run automated tests
