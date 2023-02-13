@@ -3,11 +3,11 @@ appVersion: "1.0"
 dependencies:
 - condition: postgresql.enabled
   name: postgresql
-  repository: https://charts.bitnami.com/bitnami
+  repository: https://raw.githubusercontent.com/bitnami/charts/pre-2022/bitnami
   version: 10.14.4
 - condition: redis.enabled
   name: redis
-  repository: https://charts.bitnami.com/bitnami
+  repository: https://raw.githubusercontent.com/bitnami/charts/pre-2022/bitnami
   version: 15.7.0
 description: Apache Superset is a modern, enterprise-ready business intelligence web
   application
@@ -16,4 +16,4 @@ maintainers:
   name: craig-rueda
   url: https://github.com/craig-rueda
 name: superset
-version: 1.1.1
+version: 1.1.2
