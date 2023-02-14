@@ -39,7 +39,6 @@ env:
   git_server:
   git_group:
   git_user: oauth
-  git_password: ""
   git_user_email:
   sage_host:
   sage_port:
@@ -54,6 +53,10 @@ env:
   windows_port:
   windows_host:
   spring_kafka_bootstrap_servers:
+
+secret:
+  postgres_password: ""
+  git_password: ""
 
 ingress:
   enabled: true

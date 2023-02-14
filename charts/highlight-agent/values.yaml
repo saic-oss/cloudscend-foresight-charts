@@ -52,6 +52,7 @@ secret:
   highlight_password:
   highlight_viewerpassword:
   highlight_adminpassword:
+  postgres_password: ""
 volumeMounts:
   mountPath: /AMaaS/highlight/reports
 volumes:

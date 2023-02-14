@@ -104,6 +104,19 @@ spec:
             value: {{ .Values.containers.env.highlight_adminusername }}
           - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
             value: {{ .Values.containers.env.spring_kafka_bootstrap_servers }}
+          - name: DATABASE_USERNAME
+            value: {{ .Values.env.database_username }}
+          - name: DATABASE_URL
+            value: {{ .Values.env.database_url }}
+          - name: DATABASE_NAME
+            value: {{ .Values.env.database_name }}
+          - name: DATABASE_SCHEMA
+            value: {{ .Values.env.database_schema }}
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: postgres_password
+                name: {{ .Values.name }}-secret
         resources:
           limits:
             cpu: {{ .Values.containers.resources.limits.cpu }}
