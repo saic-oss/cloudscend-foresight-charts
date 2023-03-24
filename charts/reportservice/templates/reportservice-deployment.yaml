@@ -69,6 +69,8 @@ spec:
         - containerPort: {{ .Values.spec.containers.ports.containerPort }}
         resources:
           limits:
-            cpu: "2"
+            cpu: "1000m"
+            memory: "2048Mi"
           requests:
-            cpu: "1"
+            cpu: "125m"
+            memory: "1024Mi"

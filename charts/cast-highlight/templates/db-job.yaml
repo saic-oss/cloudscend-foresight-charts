@@ -24,8 +24,8 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name | quote }}
         helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         app: {{ .Values.database.name }}-job
-    # annotations:
-    #    "sidecar.istio.io/inject": "false"
+      annotations:
+        "sidecar.istio.io/inject": "false"
     spec:
       {{ if .Values.imagePullSecrets.name }}
       imagePullSecrets:
