@@ -39,7 +39,7 @@ database:
   name: hl-db
   replicas: 1
   container:
-    image: postgres:10.3-alpine
+    image: postgres:12-alpine
     port: 5432
     volumeMounts:
       name: hl-db-persistent-storage
