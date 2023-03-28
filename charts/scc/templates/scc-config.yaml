@@ -15,4 +15,8 @@ data:
   KEYCLOAK_AUTH_SERVER_URL: {{ .Values.env.keycloak.keycloak_auth_server_url | quote }}
   KEYCLOAK_RESOURCE: {{ .Values.env.keycloak.keycloak_resource | quote }}
   SPRING_KAFKA_BOOTSTRAP_SERVERS: {{ .Values.env.spring_kafka_bootstrap_servers | quote }}
+  DATABASE_USERNAME: {{ .Values.env.database_username | quote }}
+  DATABASE_URL: {{ .Values.env.database_url | quote }}
+  DATABASE_NAME: {{ .Values.env.database_name | quote }}
+  DATABASE_SCHEMA: {{ .Values.env.database_schema | quote }}
 
