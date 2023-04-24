@@ -11,7 +11,7 @@ data:
 
 
     ## TO GENERATE BASIC AUTH HEADER:
-    AUTH_HEADER=$(echo -n admin-cast-highlight@castsoftware.com:{{ .Values.server.secret.password }} | base64)
+    AUTH_HEADER=$(echo -n {{ .Values.server.secret.username }}:{{ .Values.server.secret.password }} | base64)
     CAST_URL="https://{{ .Values.server.host }}"
 
 
