@@ -16,7 +16,7 @@ data:
 
 
     ## CREATE COMPANY
-    curl --location --request POST $CAST_URL'/WS/businessUnits' \
+    curl -k --location --request POST $CAST_URL'/WS/businessUnits' \
     --header 'Authorization: Basic '$AUTH_HEADER \
     --header 'Content-Type: application/json' \
     --data-raw '{
@@ -63,7 +63,7 @@ data:
     }'
 
     ## CREATE USERS
-    curl --location --request POST $CAST_URL'/WS/users' \
+    curl -k --location --request POST $CAST_URL'/WS/users' \
     --header 'content-type: application/json' \
     --header 'Authorization: Basic '$AUTH_HEADER \
     --data-raw '{
@@ -84,7 +84,7 @@ data:
             }
         ]
     }'
-    curl --location --request POST $CAST_URL'/WS/users' \
+    curl -k --location --request POST $CAST_URL'/WS/users' \
     --header 'content-type: application/json' \
     --header 'Authorization: Basic '$AUTH_HEADER \
     --data-raw '{
@@ -122,7 +122,7 @@ data:
     echo $VIEWER_UUID
 
     ## SET USER PASSWORDS
-    curl --location --request PUT $CAST_URL'/WS/session/register/'$MANAGER_UUID \
+    curl -k --location --request PUT $CAST_URL'/WS/session/register/'$MANAGER_UUID \
     --header 'accept: application/json, text/javascript, */*;' \
     --header 'content-type: application/json' \
     --data-raw '{
@@ -159,7 +159,7 @@ data:
             "companyRoles": []
         }
     }'
-    curl --location --request PUT $CAST_URL'/WS/session/register/'$VIEWER_UUID \
+    curl -k --location --request PUT $CAST_URL'/WS/session/register/'$VIEWER_UUID \
     --header 'accept: application/json, text/javascript, */*;' \
     --header 'content-type: application/json' \
     --data-raw '{
