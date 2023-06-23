@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+  foresight_descriptor.xml: |
+    <md:EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID={{ .Values.configMap.keycloak.url | quote }>
+    <md:IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:KeyDescriptor use="signing">
+    <ds:KeyInfo>
+    <ds:KeyName>{{ .Values.configMap.keycloak.key }</ds:KeyName>
+    <ds:X509Data> <ds:X509Certificate>{{ .Values.configMap.keycloak.cert }</ds:X509Certificate>
+    </ds:X509Data>
+    </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location={{ .Values.configMap.keycloak.saml.protocol.resolve.url | quote } index="0"/>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</md:NameIDFormat>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</md:NameIDFormat>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location={{ .Values.configMap.keycloak.saml.protocol.url | quote }/>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location={{ .Values.configMap.keycloak.saml.protocol.url | quote }/>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location={{ .Values.configMap.keycloak.saml.protocol.url | quote }/>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location={{ .Values.configMap.keycloak.saml.protocol.url | quote }/>
+    </md:IDPSSODescriptor>
+    </md:EntityDescriptor>
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name }}-descriptor-config
+  namespace: {{ .Values.namespace }}
