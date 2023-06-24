@@ -4,10 +4,10 @@ data:
     hl.security.authc.realms.foresight:
     type: saml
     populate: y
-    logout_redirect: {{ .Values.configMap.foresight.url | quote }
+    logout_redirect: {{ .Values.configMap.foresight.url | quote }}
     idp.metadata.path: "/foresight_descriptor.xml"
-    idp.entity_id: {{ .Values.configMap.keycloak.realm.url | quote }
-    sp.entity_id: {{ .Values.configMap.keycloak.cast.url | quote }
+    idp.entity_id: {{ .Values.configMap.keycloak.realm.url | quote }}
+    sp.entity_id: {{ .Values.configMap.keycloak.cast.url | quote }}
     attributes.principal: "email"
     attributes.business_id: "value:2"
     attributes.subdomain_id: "cast-subdomain-id"
