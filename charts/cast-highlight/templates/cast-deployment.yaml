@@ -24,6 +24,7 @@ spec:
           image: {{ .Values.server.container.image }}
           ports:
           - containerPort: {{ .Values.server.container.port }}
+          
           envFrom:
             - configMapRef:
                 name: {{ .Values.server.name }}-config
@@ -48,6 +49,25 @@ spec:
               secretKeyRef:
                 key: password
                 name: {{ .Values.server.name }}-secret
+          volumeMounts:
+            - mountPath: {{ .Values.containers.volumeMounts.mountPath }}
+              name: {{ .Values.containers.volumeMounts.name }}-saml-realms
+              readOnly: true
+              subPath: saml.realms.yaml
+            - mountPath: {{ .Values.containers.volumeMounts.mountPath }}
+              name: {{ .Values.containers.volumeMounts.name }}-descriptor
+              readOnly: true
+              subPath: foresight_descriptor.xml
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: {{ .Values.name }}-descriptor-config
+          name: {{ .Values.containers.volumeMounts.name }}-descriptor
+        - configMap:
+            defaultMode: 420
+            name: {{ .Values.name }}-saml-realms-config
+          name: {{ .Values.containers.volumeMounts.name }}-saml-realms
+        
 ---
 apiVersion: v1
 kind: Service
