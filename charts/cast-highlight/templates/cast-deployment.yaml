@@ -61,11 +61,11 @@ spec:
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ .Values.name }}-descriptor-config
+            name: {{ .Values.server.name }}-descriptor-config
           name: {{ .Values.containers.volumeMounts.name }}-descriptor
         - configMap:
             defaultMode: 420
-            name: {{ .Values.name }}-saml-realms-config
+            name: {{ .Values.server.name }}-saml-realms-config
           name: {{ .Values.containers.volumeMounts.name }}-saml-realms
         
 ---
