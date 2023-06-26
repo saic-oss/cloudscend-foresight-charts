@@ -1,20 +1,20 @@
 apiVersion: v1
 data:
-  saml.realms.yaml: |
+  saml.realms.yml: |
     hl.security.authc.realms.foresight:
-    type: saml
-    populate: y
-    logout_redirect: {{ .Values.configMap.foresight.url | quote }}
-    idp.metadata.path: "/foresight_descriptor.xml"
-    idp.entity_id: {{ .Values.configMap.keycloak.realm.url | quote }}
-    sp.entity_id: {{ .Values.configMap.keycloak.cast.url | quote }}
-    attributes.principal: "email"
-    attributes.business_id: "value:2"
-    attributes.subdomain_id: "cast-subdomain-id"
-    attributes.first_name: "firstName"
-    attributes.last_name: "lastName"
-    attributes.roles: "Role"
-    attribute_patterns.roles: "^.*(portfolioManager|domainContributor|applicationContributor|resultViewer).*$"
+      type: saml
+      populate: y
+      logout_redirect: {{ .Values.configMap.foresight.url | quote }}
+      idp.metadata.path: "/foresight_descriptor.xml"
+      idp.entity_id: {{ .Values.configMap.keycloak.realm.url | quote }}
+      sp.entity_id: {{ .Values.configMap.keycloak.cast.url | quote }}
+      attributes.principal: "email"
+      attributes.business_id: "value:2"
+      attributes.subdomain_id: "cast-subdomain-id"
+      attributes.first_name: "firstName"
+      attributes.last_name: "lastName"
+      attributes.roles: "Role"
+      attribute_patterns.roles: "^.*(portfolioManager|domainContributor|applicationContributor|resultViewer).*$"
 kind: ConfigMap
 metadata:
   name: {{ .Values.server.name }}-saml-realms-config
