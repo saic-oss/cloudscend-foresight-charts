@@ -50,11 +50,11 @@ spec:
                 key: password
                 name: {{ .Values.server.name }}-secret
           volumeMounts:
-            - mountPath: {{ .Values.containers.volumeMounts.mountPath }}
+            - mountPath: {{ .Values.containers.volumeMounts.mountPath }}/saml.realms.yaml
               name: {{ .Values.containers.volumeMounts.name }}-saml-realms
               readOnly: true
               subPath: saml.realms.yaml
-            - mountPath: {{ .Values.containers.volumeMounts.mountPath }}
+            - mountPath: {{ .Values.containers.volumeMounts.mountPath }}/foresight_descriptor.xml
               name: {{ .Values.containers.volumeMounts.name }}-descriptor
               readOnly: true
               subPath: foresight_descriptor.xml
