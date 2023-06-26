@@ -17,5 +17,5 @@ data:
     attribute_patterns.roles: "^.*(portfolioManager|domainContributor|applicationContributor|resultViewer).*$"
 kind: ConfigMap
 metadata:
-  name: {{ .Values.name }}-saml-realms-config
-  namespace: {{ .Values.namespace }}
+  name: {{ .Values.server.name }}-saml-realms-config
+  namespace: {{ .Values.namespace.name }}
