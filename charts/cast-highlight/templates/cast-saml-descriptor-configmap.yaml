@@ -23,6 +23,6 @@ data:
     </md:EntityDescriptor>
 kind: ConfigMap
 metadata:
-  name: {{ .Values.name }}-descriptor-config
-  namespace: {{ .Values.namespace }}
+  name: {{ .Values.server.name }}-descriptor-config
+  namespace: {{ .Values.namespace.name }}
 #This configmap is retrieved from your keycloak server at the following URL: {keycloak server url}/realms/{realm}/protocol/saml/descriptor
