@@ -24,18 +24,21 @@ spec:
         image: {{ .Values.image.repository }}
         ports:
         - containerPort: {{ .Values.container.port }}
-        args: ["--app.cors.allowed-origins[0]={{ .Values.keycloak.allowed_origins }}",
-        "--keycloak.enabled=true",
-        "--keycloak.auth-server-url={{ .Values.keycloak.auth_server_url }}",
-        "--keycloak.ssl-required=none",
-        "--keycloak.realm={{ .Values.keycloak.realm }}",
-        "--keycloak.resource=sage",
-        "--keycloak.bearer-only=true",
-        "--keycloak.autodetect-bearer-only=true",
-        "--keycloak.enable-basic-auth=false",
-        "--keycloak.use-resource-role-mappings=false",
-        "--keycloak.public-client=true",
-        "--keycloak.principal-attribute=preferred_username"]
+        args: ["--app.cors.allowed-origins[0]={{ .Values.container.args.keycloak.app_cors_allowed_origins }}",
+        "--app.cors.allowed-origins[1]={{ .Values.container.args.keycloak.app_cors_allowed_origins_1 }}",
+        "--app.cors.allowed-origins[2]={{ .Values.container.args.keycloak.app_cors_allowed_origins_2 }}",
+        "--app.cors.allowed-origins[3]={{ .Values.container.args.keycloak.app_cors_allowed_origins_3 }}",
+        "--keycloak.enabled={{ .Values.container.args.keycloak.keycloak_enabled }}",
+        "--keycloak.auth-server-url={{ .Values.container.args.keycloak.keycloak_auth_server_url }}",
+        "--keycloak.ssl-required={{ .Values.container.args.keycloak.keycloak_ssl_required }}",
+        "--keycloak.realm={{ .Values.container.args.keycloak.keycloak_realm }}",
+        "--keycloak.resource={{ .Values.container.args.keycloak.keycloak_resource }}",
+        "--keycloak.bearer-only={{ .Values.container.args.keycloak.keycloak_bearer_only }}",
+        "--keycloak.autodetect-bearer-only={{ .Values.container.args.keycloak.keycloak_autodetect_bearer_only }}",
+        "--keycloak.enable-basic-auth={{ .Values.container.args.keycloak.keycloak_enable_basic_auth }}",
+        "--keycloak.use-resource-role-mappings={{ .Values.container.args.keycloak.keycloak_use_resource_role_mappings }}",
+        "--keycloak.public-client={{ .Values.container.args.keycloak.keycloak_public_client }}",
+        "--keycloak.principal-attribute={{ .Values.container.args.keycloak.keycloak_principal_attribute }}"]
         env:
           - name: SAGE_URL
             value: {{ .Values.container.env.sage_url }}
