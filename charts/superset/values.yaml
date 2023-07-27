@@ -421,6 +421,9 @@ istio:
   port:
   enabled:
 
+name:
+namespace:
+
 # -- Configuration values for the Redis dependency.
 # ref: https://github.com/bitnami/charts/blob/master/bitnami/redis
 # More documentation can be found here: https://artifacthub.io/packages/helm/bitnami/redis
