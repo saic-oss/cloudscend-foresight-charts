@@ -1,28 +1,28 @@
 # Default values for Sage-ML.
 # This is a YAML-formatted file.
 
-
 name: sage-ml
 namespace: sage
 replicas: 1
 
-
-containers:
-  port: 5000
-
 image:
   repository:
   imagePullSecrets:
-
-keycloak:
-  auth_server_url:
-  realm:
-  client_id:
+containers:
+  name:
+  imagePullPolicy:
+  image:
+  port: 5000
 
 secret:
   data:
     keycloak_client_secret:
     flask_app_secret_key:
+
+keycloak:
+  auth_server_url:
+  realm:
+  client_id:
 
 ingress:
   enabled: true

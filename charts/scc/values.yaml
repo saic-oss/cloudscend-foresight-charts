@@ -4,6 +4,7 @@
 name: scc
 namespace:
 replicas: 1
+
 imagePullSecret:
   name:
 container:
@@ -12,9 +13,8 @@ container:
   image:
   containerPort: 8080
 
-volumes:
-  name:
-  persistentVolumeClaim:
+secret:
+  git_password:
 
 env:
   keycloak:
@@ -29,12 +29,10 @@ env:
     git_local_dir:
     git_user:
   spring_kafka_bootstrap_servers: ""
-
-secret:
-  git_password:
-
-
-
+  
+volumes:
+  name:
+  persistentVolumeClaim:
 
 ingress:
   enabled: true
@@ -53,8 +51,6 @@ ingress:
     - secretName: tls-sample.com
       hosts:
         - sample.com
-
-
 
 istio:
   hosts: ""
