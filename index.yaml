@@ -3,9 +3,9 @@ entries:
   cast-hl:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-07-28T14:13:01.238514545Z"
+    created: "2023-08-18T13:04:44.114488214Z"
     description: A Helm chart for Kubernetes
-    digest: 7ec1f381a45ab4f9ec59aafb1ae934c8876e32fcef608c6caaaf769dae9b60b0
+    digest: cece0315ea27cab15493ea6da6369178a25c7aad5187dd10f3ed28883943639c
     name: cast-hl
     type: application
     urls:
@@ -14,14 +14,14 @@ entries:
   commondata-backend:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-28T14:13:01.399815018Z"
+    created: "2023-08-18T13:04:44.235546379Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://raw.githubusercontent.com/bitnami/charts/pre-2022/bitnami
       version: 10.14.4
     description: A Helm chart for the Sage Commondata API service
-    digest: 8fc004426b096255d41536d8fe0eb223a6ba5636fee278da7a19e824c03e32d4
+    digest: 8895b36217b3758e73584f67399da2b63d87921b99e24cc6cf0126803e277a2f
     name: commondata-backend
     type: application
     urls:
@@ -30,9 +30,9 @@ entries:
   highlight-agent:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-28T14:13:01.546188874Z"
+    created: "2023-08-18T13:04:44.352347274Z"
     description: A Helm chart for the Cast Highlight Agent Service
-    digest: cbdaf2a1bec004b0a3ee01d27321f6ea14deb9b4df267477f54585de4c77ebdc
+    digest: 67294333066118723dec8c3c5d3ecc8bf13141a8b988a749645b52ee92f40f07
     name: highlight-agent
     type: application
     urls:
@@ -41,9 +41,9 @@ entries:
   reportservice:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-28T14:13:01.640313381Z"
+    created: "2023-08-18T13:04:44.459278911Z"
     description: A Helm chart for the Sage Report Service
-    digest: 32069e62df8eaee0b402004ec6df52542a086957f9dab8adddc49170edcaf909
+    digest: 12586880ba982fe149a44c770dc46a9d45d5ffc6205df3518a0afad941315602
     name: reportservice
     type: application
     urls:
@@ -52,14 +52,14 @@ entries:
   sage-backend:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-28T14:13:01.796605523Z"
+    created: "2023-08-18T13:04:44.589138494Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://raw.githubusercontent.com/bitnami/charts/pre-2022/bitnami
       version: 10.14.4
     description: A Helm chart for the Sage Backend API service
-    digest: c6c9f61fd674f8859953d88f97d90de4b8d61201066969d3096ce6e233837ac5
+    digest: 66aaffcfacfcfe9d288a7d4084c9129f5403de10cf9e4d27577ef0a32d4b49ed
     name: sage-backend
     type: application
     urls:
@@ -68,9 +68,9 @@ entries:
   sage-frontend:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-07-28T14:13:01.931198869Z"
+    created: "2023-08-18T13:04:44.688959252Z"
     description: A Helm chart for the Sage Frontend Service
-    digest: f62c574e234d871134e0c1be03f7a6c84f95f76677c600143eb9e64d3749aa2c
+    digest: d23696faddd5a0d2419ef02c5b87cb38fd15f07fd4964f594a09f72c6f2d2450
     name: sage-frontend
     type: application
     urls:
@@ -79,9 +79,9 @@ entries:
   sage-ml:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-28T14:13:02.078692684Z"
+    created: "2023-08-18T13:04:44.798086665Z"
     description: A Helm chart for Kubernetes
-    digest: ff359779bdc597ef368a8b49f810142071a750477787581c7e1cdb8b36f85690
+    digest: bd640a8c798a2efaebd678498e82012219a9ee81c796a810b405cf37307bc819
     name: sage-ml
     type: application
     urls:
@@ -90,9 +90,9 @@ entries:
   scc:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-07-28T14:13:02.231073671Z"
+    created: "2023-08-18T13:04:44.8904997Z"
     description: Helm chart for the SCC deployment
-    digest: ebac523e7f0468031a7dbd84c0a05bfa4e675fcdc6e701c7e3eca1cbd2a8a729
+    digest: 84056f157e95b362a5c78dbf6e2eb543d4a50f35b8c1249dfd003e29446029f4
     name: scc
     type: application
     urls:
@@ -101,7 +101,7 @@ entries:
   superset:
   - apiVersion: v2
     appVersion: "1.0"
-    created: "2023-07-28T14:13:02.390689525Z"
+    created: "2023-08-18T13:04:45.012130932Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -112,7 +112,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 17.3.17
     description: Apache Superset is a modern, enterprise-ready business intelligence web application
-    digest: 6216353068924c8d61c63393fc1756d5df17f9043d3b8a861616af75b01b0835
+    digest: 46cdc1ca18eef2f406b796aca9d23c8ec1562cf0d0887fdc767c8971bc0c038e
     maintainers:
     - email: craig@craigrueda.com
       name: craig-rueda
@@ -124,12 +124,12 @@ entries:
   uploader:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-28T14:13:02.511501956Z"
+    created: "2023-08-18T13:04:45.130373347Z"
     description: A Helm chart for the Source Code Uploader Service
-    digest: 66c93220bb08e52de348cfacba7446392107d7cb69f96f713d619818b6d5ba50
+    digest: 7ffd1659cf79b7947459b53338d05974d30d3ec1d4549bec1b1a52350ca7f220
     name: uploader
     type: application
     urls:
-    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/uploader-1.1.1/uploader-1.1.1.tgz
-    version: 1.1.1
-generated: "2023-07-28T14:13:00.937903431Z"
+    - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/uploader-1.1.2/uploader-1.1.2.tgz
+    version: 1.1.2
+generated: "2023-08-18T13:04:43.843339868Z"
