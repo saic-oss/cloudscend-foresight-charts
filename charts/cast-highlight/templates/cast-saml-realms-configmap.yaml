@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   saml.realms.yml: |
-    hl.security.authc.realms.{{ .Values.configMap.keycloak.realm.name | quote }}:
+    hl.security.authc.realms.{{ .Values.configMap.keycloak.realm.name }}:
       type: saml
       populate: y
       logout_redirect: {{ .Values.configMap.foresight.url | quote }}
