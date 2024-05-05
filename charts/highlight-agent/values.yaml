@@ -5,7 +5,7 @@
 
 namespace: sage
 name: highlightagent
-replicaCount: 4
+replicaCount: 1
 
 image:
   repository: highlightagent
@@ -42,9 +42,11 @@ containers:
     spring_kafka_bootstrap_servers:
   resources:
     limits:
-      cpu: 2
+      cpu: 4
+      memory: 4G
     requests:
-      cpu: 1
+      cpu: 2
+      memory: 2G
 
 secret:
   git_user:
