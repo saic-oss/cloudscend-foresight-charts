@@ -1,19 +1,19 @@
 namespace:
   name: cast-hl-dev
   create: false
-
-server:
-  name: cast-hl
-  replicas: 1
-  host: sample.com
-  container:
-    resources:
+containers:
+  resources:
     limits:
       cpu: 4
       memory: 4G
     requests:
       cpu: 2
       memory: 2G
+server:
+  name: cast-hl
+  replicas: 1
+  host: sample.com
+  container:
     image:
     port: 8080
   istio:
