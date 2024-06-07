@@ -7,6 +7,13 @@ server:
   replicas: 1
   host: sample.com
   container:
+    resources:
+    limits:
+      cpu: 4
+      memory: 4G
+    requests:
+      cpu: 2
+      memory: 2G
     image:
     port: 8080
   istio:
