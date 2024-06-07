@@ -20,6 +20,13 @@ spec:
         -  name:  {{ .Values.imagePullSecrets.name }}
       {{ end }}
       containers:
+        resources:
+          limits:
+            cpu: {{ .Values.containers.resources.limits.cpu }}
+            memory: {{ .Values.containers.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.containers.resources.requests.cpu }}
+            memory: {{ .Values.containers.resources.requests.memory }}
         - name: {{ .Values.server.name }}
           image: {{ .Values.server.container.image }}
           ports:
