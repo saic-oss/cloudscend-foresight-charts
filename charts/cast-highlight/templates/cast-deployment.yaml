@@ -30,7 +30,7 @@ spec:
         - name: {{ .Values.server.name }}
           image: {{ .Values.server.container.image }}
           ports:
-          - containerPort: {{ .Values.server.container.port }  
+          - containerPort: {{ .Values.server.container.port }}  
           envFrom:
             - configMapRef:
                 name: {{ .Values.server.name }}-config
