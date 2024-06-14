@@ -35,6 +35,7 @@ env:
   highlight_analysis_url: ""
   highlight_report_url: ""
   sage_report_url: ""
+  pre_analysis_report_url: ""
   queue_analysis_url: ""
   aws_bucket_name: sample
   aws_s3_enabled: true
