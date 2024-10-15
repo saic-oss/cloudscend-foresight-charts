@@ -33,10 +33,12 @@ task validate
 task test
 
 # Package, push, and release new changes
-export CR_TOKEN='abc123abc123abc123abc123abc123abc123'
-export CR_OWNER='my-org'
-export CR_GIT_REPO='my-cool-repo'
-export CR_CHARTS_REPO='https://my-org.github.io/my-cool-repo'
+export CR_TOKEN=''
+export CR_OWNER='saic-oss'
+export CR_GIT_REPO='cloudscend-foresight-charts'
+export CR_CHARTS_REPO='https://github.com/saic-oss/cloudscend-foresight-charts'
+export GIT_USERNAME='birdma-saic'
+export GIT_EMAIL='matthew.bird@saic.com'
 task deliver
 
 # Just package
