@@ -9,6 +9,11 @@ containers:
     requests:
       cpu: 2
       memory: 2G
+env:
+  database_username: ""
+  database_url: ""
+  database_name: sage
+  database_schema: highlight
 server:
   name: cast-hl
   replicas: 1
@@ -42,29 +47,6 @@ server:
     password:
     additionalAccountPassword:
 
-database:
-  name: hl-db
-  replicas: 1
-  container:
-    image: postgres:12-alpine
-    port: 5432
-    volumeMounts:
-      name: hl-db-persistent-storage
-      mountPath: /usr/lib/postgresql/data
-      subPath: hl
-  strategy: Recreate
-  volume:
-    name: hl-db-persistent-storage
-    persistentVolumeClaim: postgres-pv-claim
-    persistentVolumeClaimStorage: 20Gi
-    storageClassName: aws-efs
-  secret:
-    username:
-    password:
-  schema: highlight
-  job:
-    image: bitnami/postgresql:latest
-
 sca:
   host:
   port: 80
@@ -72,3 +54,25 @@ sca:
 
 imagePullSecrets:
   name:
+
+##### POSTGRES Configuration
+postgresql:
+  enabled: false
+  annotations:
+    app: sage-database
+  common:
+    image:
+      pullSecrets: ""
+      pullPolicy: "IfNotPresent"
+  persistence:
+    mountPath: /var/lib/postgresql/data
+    subPath: sagedb
+    size: 20Gi
+    storageClass: aws-efs
+  # PostgreSQL User to create
+  postgresqlUsername: sage-db
+  # PostgreSQL Password for the new user
+  postgresqlPassword: ""
+  # PostgreSQL Database to create
+  postgresqlDatabase: sage-db
+  # Persistent Volume Storage configuration
