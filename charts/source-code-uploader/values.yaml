@@ -23,7 +23,7 @@ container:
     git_user:
     git_user_email:
     git_group:
-    spring_kafka_bootstrap_servers: 
+    spring_kafka_bootstrap_servers:
 service:
   type: ClusterIP
   ports:

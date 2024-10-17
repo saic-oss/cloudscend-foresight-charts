@@ -20,4 +20,3 @@ data:
   DATABASE_URL: {{ .Values.env.database.database_url | quote }}
   DATABASE_NAME: {{ .Values.env.database.database_name | quote }}
   DATABASE_SCHEMA: {{ .Values.env.database.database_schema | quote }}
-

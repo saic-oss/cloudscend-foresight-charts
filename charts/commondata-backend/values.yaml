@@ -44,7 +44,7 @@ database_schema:
 database_password: #
 redis_host:
 foresight_backend_url:
-spring_kafka_bootstrap_servers: 
+spring_kafka_bootstrap_servers:
 
 ingress:
   enabled: true
