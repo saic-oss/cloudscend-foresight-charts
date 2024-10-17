@@ -1,198 +1,198 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.database.name }}-init-script
-  namespace: {{ .Values.namespace.name }}
-  labels:
-    app: {{ .Values.database.name }}
-data:
-  cast-init.sh: |
-    #/bin/sh
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: {{ .Values.database_name }}-init-script
+#   namespace: {{ .Values.namespace.name }}
+#   labels:
+#     app: {{ .Values.database_name }}
+# data:
+#   cast-init.sh: |
+#     #/bin/sh
 
 
-    ## TO GENERATE BASIC AUTH HEADER:
-    AUTH_HEADER=$(echo -n '{{ .Values.server.secret.username }}:{{ .Values.server.secret.password }}' | base64)
-    CAST_URL="https://{{ .Values.server.host }}"
+#     ## TO GENERATE BASIC AUTH HEADER:
+#     AUTH_HEADER=$(echo -n '{{ .Values.server.secret.username }}:{{ .Values.server.secret.password }}' | base64)
+#     CAST_URL="https://{{ .Values.server.host }}"
 
 
-    ## CREATE COMPANY
-    curl -k --location --request POST $CAST_URL'/WS/businessUnits' \
-    --header 'Authorization: Basic '$AUTH_HEADER \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "name": "SAIC",
-        "activeUntil": {
-            "time": 1924961724127
-        },
-        "origin": "undefined",
-        "address": {
-            "country": "US"
-        },
-        "benchmarkable": true,
-        "clientRef": "SAIC",
-        "displayConfiguration": {
-            "elementsToHide": [
-                "logo"
-            ],
-            "logoUrl": null
-        },
-        "maxApplication": "99999",
-        "passwordCheckConfiguration": [
-            "containCharacter",
-            "containNumeric",
-            "containLowerCase",
-            "containUpperCase"
-        ],
-        "passwordMinLength": "10",
-        "features": [
-            "BUSINESS_UNITS",
-            "CAMPAIGN",
-            "SURVEY",
-            "ALERTS",
-            "BENCHMARK",
-            "FRAMEWORK",
-            "CLOUD_READY",
-            "CVE",
-            "LICENSE_FINGER_PRINT",
-            "OAUTH_TOKEN",
-            "BLIND_USER"
-        ],
-        "cloudPlatformRecommendationType": [
-            "all"
-        ]
-    }'
+#     ## CREATE COMPANY
+#     curl -k --location --request POST $CAST_URL'/WS/businessUnits' \
+#     --header 'Authorization: Basic '$AUTH_HEADER \
+#     --header 'Content-Type: application/json' \
+#     --data-raw '{
+#         "name": "SAIC",
+#         "activeUntil": {
+#             "time": 1924961724127
+#         },
+#         "origin": "undefined",
+#         "address": {
+#             "country": "US"
+#         },
+#         "benchmarkable": true,
+#         "clientRef": "SAIC",
+#         "displayConfiguration": {
+#             "elementsToHide": [
+#                 "logo"
+#             ],
+#             "logoUrl": null
+#         },
+#         "maxApplication": "99999",
+#         "passwordCheckConfiguration": [
+#             "containCharacter",
+#             "containNumeric",
+#             "containLowerCase",
+#             "containUpperCase"
+#         ],
+#         "passwordMinLength": "10",
+#         "features": [
+#             "BUSINESS_UNITS",
+#             "CAMPAIGN",
+#             "SURVEY",
+#             "ALERTS",
+#             "BENCHMARK",
+#             "FRAMEWORK",
+#             "CLOUD_READY",
+#             "CVE",
+#             "LICENSE_FINGER_PRINT",
+#             "OAUTH_TOKEN",
+#             "BLIND_USER"
+#         ],
+#         "cloudPlatformRecommendationType": [
+#             "all"
+#         ]
+#     }'
 
-    ## CREATE USERS
-    curl -k --location --request POST $CAST_URL'/WS/users' \
-    --header 'content-type: application/json' \
-    --header 'Authorization: Basic '$AUTH_HEADER \
-    --data-raw '{
-        "status": "invited",
-        "firstName": "sage-highlight",
-        "lastName": "manager",
-        "emails": [
-            {
-                "email": "sage-highlight-manager@saic.com"
-            }
-        ],
-        "companyRoles": [
-            {
-                "role": "portfolioManager",
-                "userId": 2,
-                "businessUnitId": 2,
-                "selected": true
-            }
-        ]
-    }'
-    curl -k --location --request POST $CAST_URL'/WS/users' \
-    --header 'content-type: application/json' \
-    --header 'Authorization: Basic '$AUTH_HEADER \
-    --data-raw '{
-        "status": "invited",
-        "firstName": "sage-highlight",
-        "lastName": "viewer",
-        "emails": [
-            {
-                "email": "sage-highlight-viewer@saic.com"
-            }
-        ],
-        "companyRoles": [
-            {
-                "role": "resultViewer",
-                "userId": 3,
-                "businessUnitId": 2,
-                "selected": true
-            }
-        ]
-    }'
+#     ## CREATE USERS
+#     curl -k --location --request POST $CAST_URL'/WS/users' \
+#     --header 'content-type: application/json' \
+#     --header 'Authorization: Basic '$AUTH_HEADER \
+#     --data-raw '{
+#         "status": "invited",
+#         "firstName": "sage-highlight",
+#         "lastName": "manager",
+#         "emails": [
+#             {
+#                 "email": "sage-highlight-manager@saic.com"
+#             }
+#         ],
+#         "companyRoles": [
+#             {
+#                 "role": "portfolioManager",
+#                 "userId": 2,
+#                 "businessUnitId": 2,
+#                 "selected": true
+#             }
+#         ]
+#     }'
+#     curl -k --location --request POST $CAST_URL'/WS/users' \
+#     --header 'content-type: application/json' \
+#     --header 'Authorization: Basic '$AUTH_HEADER \
+#     --data-raw '{
+#         "status": "invited",
+#         "firstName": "sage-highlight",
+#         "lastName": "viewer",
+#         "emails": [
+#             {
+#                 "email": "sage-highlight-viewer@saic.com"
+#             }
+#         ],
+#         "companyRoles": [
+#             {
+#                 "role": "resultViewer",
+#                 "userId": 3,
+#                 "businessUnitId": 2,
+#                 "selected": true
+#             }
+#         ]
+#     }'
 
 
-    ## SET USER PASSWORD
-    #### GET UUID FROM PSQL
-    REG_URLS=$(PGPASSWORD=$HL_PG_PASSWORD psql -h {{ .Values.database.name }} -U highlight_root -p 5432 -d highlight -c 'select $$'https://cast/#/?registration='$$ || uuid FROM highlight.mail_operations, highlight.roles, highlight.mail_address WHERE highlight.mail_address.user_id = highlight.roles.user_id AND highlight.roles.id = highlight.mail_operations.u_id;')
-    MANAGER_URL=$(echo $REG_URLS | awk -F' ' '{print $3}')
-    VIEWER_URL=$(echo $REG_URLS | awk -F' ' '{print $4}')
-    MANAGER_UUID=$(echo $MANAGER_URL | sed -n 's/.*ation=//p')
-    VIEWER_UUID=$(echo $VIEWER_URL | sed -n 's/.*ation=//p')
+#     ## SET USER PASSWORD
+#     #### GET UUID FROM PSQL
+#     REG_URLS=$(PGPASSWORD=$HL_PG_PASSWORD psql -h {{ .Values.database.name }} -U highlight_root -p 5432 -d highlight -c 'select $$'https://cast/#/?registration='$$ || uuid FROM highlight.mail_operations, highlight.roles, highlight.mail_address WHERE highlight.mail_address.user_id = highlight.roles.user_id AND highlight.roles.id = highlight.mail_operations.u_id;')
+#     MANAGER_URL=$(echo $REG_URLS | awk -F' ' '{print $3}')
+#     VIEWER_URL=$(echo $REG_URLS | awk -F' ' '{print $4}')
+#     MANAGER_UUID=$(echo $MANAGER_URL | sed -n 's/.*ation=//p')
+#     VIEWER_UUID=$(echo $VIEWER_URL | sed -n 's/.*ation=//p')
 
-    echo $REG_URLS
-    echo $MANAGER_URL
-    echo $VIEWER_URL
-    echo $MANAGER_UUID
-    echo $VIEWER_UUID
+#     echo $REG_URLS
+#     echo $MANAGER_URL
+#     echo $VIEWER_URL
+#     echo $MANAGER_UUID
+#     echo $VIEWER_UUID
 
-    ## SET USER PASSWORDS
-    curl -k --location --request PUT $CAST_URL'/WS/session/register/'$MANAGER_UUID \
-    --header 'accept: application/json, text/javascript, */*;' \
-    --header 'content-type: application/json' \
-    --data-raw '{
-        "uuid": "$MANAGER_UUID",
-        "oldPassword": "",
-        "passwordCheckConfiguration": [
-            "containCharacter",
-            "containNumeric",
-            "containLowerCase",
-            "containUpperCase"
-        ],
-        "passwordMinLength": 10,
-        "linkExpired": false,
-        "operationType": "registration",
-        "password": "{{ .Values.server.secret.additionalAccountPassword }}",
-        "user": {
-            "id": 2,
-            "version": 0,
-            "firstName": "Manager",
-            "lastName": "sage-highlight-manager",
-            "status": "invited",
-            "emails": [
-                {
-                    "id": 2,
-                    "email": "sage-highlight-manager@saic.com",
-                    "status": "needValidation"
-                }
-            ],
-            "email": {
-                "id": 2,
-                "email": "sage-highlight-manager@saic.com",
-                "status": "needValidation"
-            },
-            "companyRoles": []
-        }
-    }'
-    curl -k --location --request PUT $CAST_URL'/WS/session/register/'$VIEWER_UUID \
-    --header 'accept: application/json, text/javascript, */*;' \
-    --header 'content-type: application/json' \
-    --data-raw '{
-        "uuid": "$VIEWER_UUID",
-        "oldPassword": "",
-        "passwordCheckConfiguration": [
-            "containCharacter",
-            "containNumeric",
-            "containLowerCase",
-            "containUpperCase"
-        ],
-        "passwordMinLength": 10,
-        "linkExpired": false,
-        "operationType": "registration",
-        "password": "{{ .Values.server.secret.additionalAccountPassword }}",
-        "user": {
-            "id": 3,
-            "version": 0,
-            "firstName": "Viewer",
-            "lastName": "sage-highlight-viewer",
-            "status": "invited",
-            "emails": [
-                {
-                    "id": 3,
-                    "email": "sage-highlight-viewer@saic.com",
-                    "status": "needValidation"
-                }
-            ],
-            "email": {
-                "id": 3,
-                "email": "sage-highlight-viewer@saic.com",
-                "status": "needValidation"
-            },
-            "companyRoles": []
-        }
-    }'
+#     ## SET USER PASSWORDS
+#     curl -k --location --request PUT $CAST_URL'/WS/session/register/'$MANAGER_UUID \
+#     --header 'accept: application/json, text/javascript, */*;' \
+#     --header 'content-type: application/json' \
+#     --data-raw '{
+#         "uuid": "$MANAGER_UUID",
+#         "oldPassword": "",
+#         "passwordCheckConfiguration": [
+#             "containCharacter",
+#             "containNumeric",
+#             "containLowerCase",
+#             "containUpperCase"
+#         ],
+#         "passwordMinLength": 10,
+#         "linkExpired": false,
+#         "operationType": "registration",
+#         "password": "{{ .Values.server.secret.additionalAccountPassword }}",
+#         "user": {
+#             "id": 2,
+#             "version": 0,
+#             "firstName": "Manager",
+#             "lastName": "sage-highlight-manager",
+#             "status": "invited",
+#             "emails": [
+#                 {
+#                     "id": 2,
+#                     "email": "sage-highlight-manager@saic.com",
+#                     "status": "needValidation"
+#                 }
+#             ],
+#             "email": {
+#                 "id": 2,
+#                 "email": "sage-highlight-manager@saic.com",
+#                 "status": "needValidation"
+#             },
+#             "companyRoles": []
+#         }
+#     }'
+#     curl -k --location --request PUT $CAST_URL'/WS/session/register/'$VIEWER_UUID \
+#     --header 'accept: application/json, text/javascript, */*;' \
+#     --header 'content-type: application/json' \
+#     --data-raw '{
+#         "uuid": "$VIEWER_UUID",
+#         "oldPassword": "",
+#         "passwordCheckConfiguration": [
+#             "containCharacter",
+#             "containNumeric",
+#             "containLowerCase",
+#             "containUpperCase"
+#         ],
+#         "passwordMinLength": 10,
+#         "linkExpired": false,
+#         "operationType": "registration",
+#         "password": "{{ .Values.server.secret.additionalAccountPassword }}",
+#         "user": {
+#             "id": 3,
+#             "version": 0,
+#             "firstName": "Viewer",
+#             "lastName": "sage-highlight-viewer",
+#             "status": "invited",
+#             "emails": [
+#                 {
+#                     "id": 3,
+#                     "email": "sage-highlight-viewer@saic.com",
+#                     "status": "needValidation"
+#                 }
+#             ],
+#             "email": {
+#                 "id": 3,
+#                 "email": "sage-highlight-viewer@saic.com",
+#                 "status": "needValidation"
+#             },
+#             "companyRoles": []
+#         }
+#     }'
