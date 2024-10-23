@@ -87,6 +87,7 @@ tasks:
         else
             helm-cr upload --commit "$(git rev-parse main)"
         fi
+      - helm-cr repo update
 
   chart-releaser:indexAndPush:
     desc: Create and push index.yaml to gh-pages branch
@@ -114,3 +115,4 @@ tasks:
         && rm -rf .cr-index \
         && mkdir .cr-index \
         && helm-cr index --push
+        && helm-cr repo update
