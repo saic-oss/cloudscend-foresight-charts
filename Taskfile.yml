@@ -115,4 +115,4 @@ tasks:
         && rm -rf .cr-index \
         && mkdir .cr-index \
         && helm-cr index --push
-        && helm-cr repo update
+      - helm-cr repo update
