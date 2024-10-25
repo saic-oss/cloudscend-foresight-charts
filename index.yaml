@@ -15,7 +15,7 @@ entries:
     type: application
     urls:
     - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/cast-hl-1.2.5/cast-hl-1.2.5.tgz
-    version: 1.2.5
+    version: 1.1.22
   commondata-backend:
   - apiVersion: v2
     appVersion: 1.16.0
