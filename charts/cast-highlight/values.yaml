@@ -14,6 +14,7 @@ env:
   database_url: ""
   database_name: sage
   database_schema: highlight
+  database_secret_username: ""
 server:
   name: cast-hl
   replicas: 1
