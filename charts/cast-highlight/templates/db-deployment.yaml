@@ -1,13 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Values.env.database_name }}
-  namespace: {{ .Values.namespace.name }}
----
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.env.database_name }}
   namespace: {{ .Values.namespace.name }}
   labels:
+    app: {{ .Values.env.database_name }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: {{ .Values.env.database_container_port }}
+  selector:
     app: {{ .Values.env.database_name }}
