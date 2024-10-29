@@ -32,12 +32,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: username
-                name: {{ .Values.database.name }}-secret
+                name: {{ .Values.env.database_name }}-secret
           - name: HL_PG_PASSWORD
             valueFrom:
               secretKeyRef:
                 key: password
-                name: {{ .Values.database.name }}-secret
+                name: {{ .Values.env.database_name }}-secret
           - name: HL_ADMIN_MAIL
             valueFrom:
               secretKeyRef:
