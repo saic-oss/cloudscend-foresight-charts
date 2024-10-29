@@ -1,1 +1,5 @@
 apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.env.database_name }}
+  namespace: {{ .Values.namespace.name }}

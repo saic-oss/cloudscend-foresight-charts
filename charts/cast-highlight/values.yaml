@@ -15,6 +15,9 @@ env:
   database_name: sage
   database_schema: highlight
   database_secret_username: ""
+  database_persistentVolumeClaim: postgres-pv-claim
+  database_persistentVolumeClaimStorage: 20Gi
+  database_storageClassName: aws-efs
 server:
   name: cast-hl
   replicas: 1
