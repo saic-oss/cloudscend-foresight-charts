@@ -26,11 +26,8 @@ data:
     --
     -- Name: highlight; Type: SCHEMA; Schema: -; Owner: highlight
     --
-    ALTER DATABASE HIGHLIGHT OWNER TO {{ .Values.env.database_secret_username }};
 
     CREATE SCHEMA {{ .Values.env.database_schema }};
-
-    ALTER SCHEMA {{ .Values.env.database_schema }} OWNER TO {{ .Values.env.database_secret_username }};
 
     --
     -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
