@@ -23,7 +23,7 @@ spec:
         - name: {{ .Values.server.name }}
           image: {{ .Values.server.container.image }}
           ports:
-          - containerPort: {{ .Values.server.container.port }}  
+          - containerPort: {{ .Values.server.container.port }}
           envFrom:
             - configMapRef:
                 name: {{ .Values.server.name }}-config
@@ -32,12 +32,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: username
-                name: {{ .Values.database.name }}-secret
+                name: {{ .Values.env.database_name }}-secret
           - name: HL_PG_PASSWORD
             valueFrom:
               secretKeyRef:
                 key: password
-                name: {{ .Values.database.name }}-secret
+                name: {{ .Values.env.database_name }}-secret
           - name: HL_ADMIN_MAIL
             valueFrom:
               secretKeyRef:
@@ -73,7 +73,7 @@ spec:
             defaultMode: 420
             name: {{ .Values.server.name }}-saml-realms-config
           name: {{ .Values.containers.volumeMounts.name }}-saml-realms
-        
+
 ---
 apiVersion: v1
 kind: Service
