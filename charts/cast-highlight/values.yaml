@@ -14,6 +14,8 @@ env:
   database_url: ""
   database_name: sage
   database_schema: highlight
+  database_image: bitnami/postgresql:latest
+  database_container_port: 5432
 server:
   name: cast-hl
   replicas: 1
