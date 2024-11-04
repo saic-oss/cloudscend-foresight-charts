@@ -12,7 +12,7 @@ containers:
 env:
   database_username: ""
   database_url: ""
-  database_name: cast-hl
+  database_name: cast-db
   database_schema: highlight
   database_image: bitnami/postgresql:latest
   database_container_port: 5432
