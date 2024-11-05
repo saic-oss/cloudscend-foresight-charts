@@ -11,6 +11,7 @@ containers:
       memory: 2G
 env:
   database_username: ""
+  database_password: ""
   database_url: ""
   database_name: cast-db
   database_schema: highlight
