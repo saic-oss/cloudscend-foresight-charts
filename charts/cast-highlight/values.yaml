@@ -15,7 +15,7 @@ env:
   database_url: ""
   database_name: cast-db
   database_schema: highlight
-  database_image: bitnami/postgresql:latest
+  database_image: postgres:12-alpine
   database_container_port: "5432"
 server:
   name: cast-hl
