@@ -13,7 +13,7 @@ env:
   database_username: ""
   database_password: ""
   database_url: ""
-  database_name: castdb
+  database_name: cast-db
   database_schema: highlight
   database_image: cerberussystems/postgres-curl
   database_container_port: "5432"
