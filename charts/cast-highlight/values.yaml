@@ -17,6 +17,7 @@ env:
   database_schema: highlight
   database_image: cerberussystems/postgres-curl
   database_container_port: "5432"
+  database_secret_username: ""
 server:
   name: cast-hl
   replicas: 1

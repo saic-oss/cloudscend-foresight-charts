@@ -8,7 +8,7 @@ metadata:
 data:
   HL_PG_SERVER: {{ .Values.env.database_url }}
   HL_PG_PORT: "5432"
-  HL_PG_DB: {{ .Values.env.database_name }}
+  HL_PG_DB: highlight
   HL_PG_SCHEMA: {{ .Values.env.database_schema }}
   HL_HOSTNAME: {{ .Values.server.host }}
   HL_ROOT_URL: https://{{ .Values.server.host }}/
