@@ -109,7 +109,7 @@ data:
 
     ## SET USER PASSWORD
     #### GET UUID FROM PSQL
-    REG_URLS=$(PGPASSWORD=$HL_PG_PASSWORD psql -h {{ .Values.env.database_url }} -U foresight -p 5432 -d cast-db -c 'select $$'https://cast/#/?registration='$$ || uuid FROM cast-db.mail_operations, cast-db.roles, cast-db.mail_address WHERE cast-db.mail_address.user_id = cast-db.roles.user_id AND cast-db.roles.id = cast-db.mail_operations.u_id;')
+    REG_URLS=$(PGPASSWORD=$HL_PG_PASSWORD psql -h {{ .Values.env.database_url }} -U foresight -p 5432 -d castdb -c 'select $$'https://cast/#/?registration='$$ || uuid FROM castdb.mail_operations, castdb.roles, castdb.mail_address WHERE castdb.mail_address.user_id = castdb.roles.user_id AND castdb.roles.id = castdb.mail_operations.u_id;')
     MANAGER_URL=$(echo $REG_URLS | awk -F' ' '{print $3}')
     VIEWER_URL=$(echo $REG_URLS | awk -F' ' '{print $4}')
     MANAGER_UUID=$(echo $MANAGER_URL | sed -n 's/.*ation=//p')
