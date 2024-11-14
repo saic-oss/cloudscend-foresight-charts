@@ -15,7 +15,7 @@ env:
   database_url: ""
   database_name: cast-db
   database_schema: highlight
-  database_image: postgres:12-alpine
+  database_image: cerberussystems/postgres-curl
   database_container_port: "5432"
 server:
   name: cast-hl
@@ -79,14 +79,3 @@ postgresql:
   # PostgreSQL Database to create
   postgresqlDatabase: sage-db
   # Persistent Volume Storage configuration
-
-initContainers:
-  - name: install-curl
-    image: postgres:12-alpine
-    command:
-      - /bin/sh
-      - -c
-      - apk update && apk add --no-cache curl
-    volumeMounts:
-      - name: postgres-data
-        mountPath: /var/lib/postgresql/data
