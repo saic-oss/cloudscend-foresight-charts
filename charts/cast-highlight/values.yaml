@@ -79,3 +79,14 @@ postgresql:
   # PostgreSQL Database to create
   postgresqlDatabase: sage-db
   # Persistent Volume Storage configuration
+
+initContainers:
+  - name: install-curl
+    image: postgres:12-alpine
+    command:
+      - /bin/sh
+      - -c
+      - apk update && apk add --no-cache curl
+    volumeMounts:
+      - name: postgres-data
+        mountPath: /var/lib/postgresql/data
