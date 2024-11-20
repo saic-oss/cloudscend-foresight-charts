@@ -42,6 +42,8 @@ configMap:
     dynatrace_url: ""
     o_and_m_url: ""
     aptio_url: ""
+    cast_disabled: ""
+    run_time_disabled: ""
   staticLinksConfig:
     help_center_url: ""
   embedConfig:
