@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: {{ .Values.name }}
+      annotations:
+        secret-checksum: {{ include (print $.Template.BasePath "/sage-ml-secret.yaml") . | sha256sum }}
     spec:
       {{ if .Values.image.imagePullSecrets }}
       imagePullSecrets:

@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: {{ .Values.name }}
+      annotations:
+        secret-checksum: {{ include (print $.Template.BasePath "/sage-secret.yaml") . | sha256sum }}
     spec:
       volumes:
       - name: {{ .Values.spec.volumes.name }}

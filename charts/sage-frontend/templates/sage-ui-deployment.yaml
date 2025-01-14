@@ -14,6 +14,8 @@ spec:
     metadata:
       labels:
         app: {{ .Values.name }}
+      annotations:
+        configmap-checksum: {{ include (print $.Template.BasePath "/sage-ui-config.yaml") . | sha256sum }}
     spec:
       {{- if .Values.imagePullSecrets.name }}
       imagePullSecrets:

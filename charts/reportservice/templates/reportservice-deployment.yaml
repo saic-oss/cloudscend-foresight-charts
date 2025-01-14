@@ -14,6 +14,9 @@ spec:
     metadata:
       labels:
         app: {{ .Values.name }}
+      annotations:
+        configmap-checksum: {{ include (print $.Template.BasePath "/reportservice-config.yaml") . | sha256sum }}
+        secret-checksum: {{ include (print $.Template.BasePath "/reportservice-secret.yaml") . | sha256sum }}
     spec:
       volumes:
       - name: {{ .Values.name }}-persistent-storage
