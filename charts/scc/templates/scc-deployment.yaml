@@ -5,6 +5,9 @@ metadata:
   namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Values.name }}
+  annotations:
+        configmap-checksum: {{ include (print $.Template.BasePath "/scc-config.yaml") . | sha256sum }}
+        secret-checksum: {{ include (print $.Template.BasePath "/scc-secret.yaml") . | sha256sum }}
 spec:
   replicas: {{ .Values.replicas }}
   selector:
