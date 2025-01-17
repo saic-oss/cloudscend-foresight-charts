@@ -15,7 +15,7 @@ spec:
       labels:
         app:  {{ .Values.name }}
       annotations:
-        secret-checksum: {{ include (print $.Template.BasePath "/commondata-api-secret.yaml") . | sha256sum }}
+        secret-checksum: {{ include (print $.Template.BasePath "/commondata-api-secrets.yaml") . | sha256sum }}
     spec:
       {{- if .Values.imagePullSecrets.name }}
       imagePullSecrets:
