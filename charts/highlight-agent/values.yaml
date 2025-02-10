@@ -35,6 +35,7 @@ containers:
     highlight_sage_report_url:
     queue_analysis_server:
     sage_server:
+    common_data_url:
     highlight_scan_timeout_minutes:
     highlight_app_timeout_minutes:
     highlight_app3rdparty_timeout_minutes:
