@@ -78,6 +78,8 @@ spec:
             value: {{ .Values.containers.env.queue_analysis_server }}
           - name: SAGE_SERVER
             value: {{ .Values.containers.env.sage_server }}
+          - name: COMMON_DATA_URL
+            value: {{ .Values.containers.env.common_data_url }}
           - name: HIGHLIGHT_SCAN_TIMEOUT_MINUTES
             value: {{ .Values.containers.env.highlight_scan_timeout_minutes | quote }}
           - name: HIGHLIGHT_APP_TIMEOUT_MINUTES
