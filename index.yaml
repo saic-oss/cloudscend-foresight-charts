@@ -42,7 +42,7 @@ entries:
     type: application
     urls:
     - https://github.com/saic-oss/cloudscend-foresight-charts/releases/download/highlight-agent-1.1.7/highlight-agent-1.1.7.tgz
-    version: 1.1.7
+    version: 1.1.8
   reportservice:
   - apiVersion: v2
     appVersion: 1.16.0
