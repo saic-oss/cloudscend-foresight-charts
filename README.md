@@ -9,7 +9,7 @@ Helm Charts repository for CloudScend Foresight.
 - [pre-commit](https://pre-commit.com/)
 - [go-task](https://taskfile.dev)
 
-The container image [Anvil](https://hub.docker.com/r/saicoss/anvil) contains all prerequisites. Here's an example of opening a bash shell in Anvil with your working directory mounted:
+The container image [Anvil](https://hub.docker.com/r/saicoss/anvil) contains all prerequisites except for helm tools. Here's an example of opening a bash shell in Anvil with your working directory mounted:
 
 ```sh
 docker run -it --rm \
@@ -26,6 +26,10 @@ Anvil is also what we use as our CI runner.
 ## Usage
 
 ```sh
+# add helm tools
+asdf install helm 3.4.1
+asdf install helm-cr 1.1.1
+
 # Validate everything to make sure nothing is screwed up
 task validate
 
