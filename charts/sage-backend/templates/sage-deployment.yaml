@@ -139,6 +139,10 @@ spec:
           value: {{ .Values.env.aws_bucket_name }}
         - name: AWS_S3_ENABLED
           value: {{ .Values.env.aws_s3_enabled | quote }}
+        - name: AWS_ACCOUNT_ID
+          value: {{ .Values.env.aws_account_id }}
+        - name: AWS_QUICKSIGHT_DASHBOARD_ID
+          value: {{ .Values.env.aws_quicksight_dashboard_id }}
         - name: METABASE_SITE_URL
           value: {{ .Values.env.metabase_site_url }}
         - name: METABASE_DASHBOARD_NUMBER
