@@ -141,6 +141,8 @@ spec:
           value: {{ .Values.env.aws_s3_enabled | quote }}
         - name: AWS_ACCOUNT_ID
           value: {{ .Values.env.aws_account_id | quote }}
+        - name: AWS_IAM_ID
+          value: {{ .Values.env.aws_iam_id | quote }}
         - name: AWS_QUICKSIGHT_DASHBOARD_ID
           value: {{ .Values.env.aws_quicksight_dashboard_id | quote }}
         - name: METABASE_SITE_URL
