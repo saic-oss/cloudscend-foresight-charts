@@ -41,6 +41,7 @@ env:
   aws_s3_enabled: true
   aws_account_id: ""
   aws_quicksight_dashboard_id: ""
+  aws_iam_id: ""
   cast_highlight_url: ""
   metabase_site_url: ""
   metabase_dashboard_number: ""
