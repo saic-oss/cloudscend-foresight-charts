@@ -44,7 +44,7 @@ data:
         O_AND_M_URL: {{ .Values.configMap.navigationMenuConfig.o_and_m_url | quote }},
         APTIO_URL: {{ .Values.configMap.navigationMenuConfig.aptio_url | quote }},
         CAST_DISABLED: {{ .Values.configMap.navigationMenuConfig.cast_disabled | quote }},
-        RUN_TIME_DISABLED: {{ .Values.configMap.navigationMenuConfig.run_time_disabled | quote }}
+        RUN_TIME_DISABLED: {{ .Values.configMap.navigationMenuConfig.run_time_disabled | quote }},
         KNOWLEDGE_DISCOVERY: {{ .Values.configMap.navigationMenuConfig.knowledge_discovery | quote }}
       };
 
