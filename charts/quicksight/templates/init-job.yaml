@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: quicksight-setup
+spec:
+  template:
+    spec:
+      serviceAccountName: quicksight-sa
+      containers:
+      - name: aws-cli
+        image: amazon/aws-cli
+        command:
+          - /bin/sh
+          - -c
+          - |
+            aws quicksight create-data-source --aws-account-id {{ .Values.awsAccountId }} \
+              --data-source-id my-rds-source \
+              --name "MyRDS" \
+              --type RDS_MYSQL \
+              --data-source-parameters '{"RdsParameters": {"InstanceId":"{{ .Values.dbInstanceId }}","Database":"{{ .Values.dbName }}"}}' \
+              --credentials '{"CredentialPair": {"Username": "{{ .Values.dbUser }}", "Password": "{{ .Values.dbPassword }}"}}'
+      restartPolicy: Never
+  backoffLimit: 1

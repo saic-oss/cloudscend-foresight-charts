@@ -1,0 +1,26 @@
+replicaCount: 1
+awsAccountId: "358354085340"
+dbInstanceId: "appmodforesightdev-0"
+quickSightDatabase_name: appmodforesightdev
+dbUser: "your-db-user"
+dbPassword: "your-db-password"
+configFromSecret: 'superset-config'
+envFromSecret: 'superset-env'
+configMountPath: "/app/pythonpath"
+
+## Edit this to match your keycloak
+client_secret: |
+  {
+    "web": {
+          "issuer": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud",
+          "auth_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/auth",
+          "client_id": "superset",
+          "client_secret": "",
+          "redirect_urls": [
+              "http://localhost:8088/*"
+          ],
+          "userinfo_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/userinfo",
+          "token_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/token",
+          "token_introspection_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/token/introspect"
+      }
+  }
