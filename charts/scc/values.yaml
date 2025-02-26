@@ -23,6 +23,11 @@ env:
     keycloak_resource:
     keycloak_realm:
   foresight_backend_url:
+  database_username:
+  database_url:
+  database_name: sage
+  database_schema:
+  pre_analysis_report_url:
   git:
     git_cli_protocol:
     git_server_url:
@@ -32,6 +37,7 @@ env:
 
 secret:
   git_password:
+  postgres_password: ""
 
 
 
