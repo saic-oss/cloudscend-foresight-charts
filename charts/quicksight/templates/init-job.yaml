@@ -25,9 +25,9 @@ spec:
             echo "Creating AWS Data Set..."
             aws quicksight create-data-set \
               --aws-account-id {{ .Values.env.awsAccountId }} \
-              --data-set-id {{ .Values.env.dataSetId }} \
-              --name "{{ .Values.env.dataSetName }}" \
-              --physical-table-map '{{ .Values.env.physicalTableMap | toJson }}'
+              --data-set-id {{ .Values.env.techDebtDataSetId }} \
+              --name "{{ .Values.env.techDebtDataSetName }}" \
+              --physical-table-map '{{ .Values.env.techDebtPhysicalTableMap | toJson }}'
 
             echo "Creating AWS Dashboard..."
             aws quicksight create-dashboard \

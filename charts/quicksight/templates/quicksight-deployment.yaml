@@ -17,6 +17,7 @@ spec:
       annotations:
         secret-checksum: {{ include (print $.Template.BasePath "/templates/quicksight-secret.yaml") . | sha256sum }}
     spec:
+      serviceAccountName: quicksight-sa
       containers:
         - name: {{ .Values.name }}
           image: "{{ .Values.spec.containers.image }}"
@@ -29,6 +30,16 @@ spec:
               value: "{{ .Values.env.dbUser }}"
             - name: DB_NAME
               value: "{{ .Values.env.dbName }}"
+            - name: TECH_DEBT_DATA_SET_ID
+              value: "{{ .Values.env.techDebtDataSetId }}"
+            - name: TECH_DEBT_DATA_SET_NAME
+              value: "{{ .Values.env.techDebtDataSetName }}"
+            - name: DASHBOARD_ID
+              value: "{{ .Values.env.dashboardId }}"
+            - name: DASHBOARD_NAME
+              value: "{{ .Values.env.dashboardName }}"
+            - name: REGION
+              value: "{{ .Values.env.region }}"
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
