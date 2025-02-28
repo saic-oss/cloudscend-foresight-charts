@@ -15,7 +15,7 @@ spec:
       labels:
         app: {{ .Values.name }}
       annotations:
-        secret-checksum: {{ include (print $.Template.BasePath "/templates/quicksight-secret.yaml") . | sha256sum }}
+        secret-checksum: {{ include (print $.Template.BasePath "/quicksight-secret.yaml") . | sha256sum }}
     spec:
       serviceAccountName: quicksight-sa
       containers:

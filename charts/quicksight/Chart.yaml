@@ -9,3 +9,12 @@ version: 1.0.0
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: "1.0"
+
+dependencies:
+  - name: postgresql
+    version: 10.14.4
+    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+  - name: redis
+    version: 17.3.17
+    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+    condition: redis.enabled
