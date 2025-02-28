@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+      annotations:
+        secret-checksum: {{ include (print $.Template.BasePath "/templates/quicksight-secret.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          image: "{{ .Values.spec.containers.image }}"
+          env:
+            - name: AWS_ACCOUNT_ID
+              value: "{{ .Values.env.awsAccountId }}"
+            - name: DB_INSTANCE_ID
+              value: "{{ .Values.env.dbInstanceId }}"
+            - name: DB_USER
+              value: "{{ .Values.env.dbUser }}"
+            - name: DB_NAME
+              value: "{{ .Values.env.dbName }}"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: dbPassword
+                  name: {{ .Values.name }}-secret

@@ -13,11 +13,32 @@ spec:
           - /bin/sh
           - -c
           - |
-            aws quicksight create-data-source --aws-account-id {{ .Values.awsAccountId }} \
+            set -e  # Stop execution if any command fails
+            echo "Creating AWS Data Source..."
+            aws quicksight create-data-source --aws-account-id {{ .Values.env.awsAccountId }} \
               --data-source-id my-rds-source \
               --name "MyRDS" \
               --type RDS_MYSQL \
-              --data-source-parameters '{"RdsParameters": {"InstanceId":"{{ .Values.dbInstanceId }}","Database":"{{ .Values.dbName }}"}}' \
-              --credentials '{"CredentialPair": {"Username": "{{ .Values.dbUser }}", "Password": "{{ .Values.dbPassword }}"}}'
-      restartPolicy: Never
+              --data-source-parameters '{"RdsParameters": {"InstanceId":"{{ .Values.env.dbInstanceId }}","Database":"{{ .Values.env.dbName }}"}}' \
+              --credentials '{"CredentialPair": {"Username": "{{ .Values.env.dbUser }}", "Password": "{{ .Values.secret.dbPassword }}"}}'
+
+            echo "Creating AWS Data Set..."
+            aws quicksight create-data-set \
+              --aws-account-id {{ .Values.env.awsAccountId }} \
+              --data-set-id {{ .Values.env.dataSetId }} \
+              --name "{{ .Values.env.dataSetName }}" \
+              --physical-table-map '{{ .Values.env.physicalTableMap | toJson }}'
+
+            echo "Creating AWS Dashboard..."
+            aws quicksight create-dashboard \
+              --aws-account-id {{ .Values.env.awsAccountId }} \
+              --dashboard-id {{ .Values.env.dashboardId }} \
+              --name "{{ .Values.env.dashboardName }}" \
+              --source-entity '{{ .Values.env.sourceEntity | toJson }}'
+
+            echo "QuickSight setup completed successfully."
+        env:
+        - name: AWS_DEFAULT_REGION
+          value: "{{ .Values.env.region }}"
+      restartPolicy: OnFailure
   backoffLimit: 1

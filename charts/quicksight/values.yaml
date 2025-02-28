@@ -1,12 +1,27 @@
-replicaCount: 1
-awsAccountId: "358354085340"
-dbInstanceId: "appmodforesightdev-0"
-quickSightDatabase_name: appmodforesightdev
-dbUser: "your-db-user"
-dbPassword: "your-db-password"
-configFromSecret: 'superset-config'
-envFromSecret: 'superset-env'
-configMountPath: "/app/pythonpath"
+replicas: 1
+name: quicksight
+namespace: quicksight
+
+spec:
+  containers:
+    imagePullPolicy: Always
+    image: quicksight
+    ports:
+      containerPort: 8089
+env:
+  awsAccountId: "358354085340"
+  dbInstanceId: "appmodforesightdev-0"
+  dbUser: "foresight"
+  dbName: "quicksight"
+  dataSetId: ""
+  dataSetName: ""
+  dashboardId: ""
+  dashboardName: ""
+  physicalTableMap: ""
+  sourceEntity: ""
+  region: "us-east-1"
+secret:
+  db_password: ""
 
 ## Edit this to match your keycloak
 client_secret: |
