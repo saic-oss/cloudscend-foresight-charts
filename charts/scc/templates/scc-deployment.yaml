@@ -6,8 +6,8 @@ metadata:
   labels:
     app: {{ .Values.name }}
   annotations:
-        configmap-checksum: {{ include (print $.Template.BasePath "/scc-config.yaml") . | sha256sum }}
-        secret-checksum: {{ include (print $.Template.BasePath "/scc-secret.yaml") . | sha256sum }}
+    configmap-checksum: {{ include (print $.Template.BasePath "/scc-config.yaml") . | sha256sum }}
+    secret-checksum: {{ include (print $.Template.BasePath "/scc-secret.yaml") . | sha256sum }}
 spec:
   replicas: {{ .Values.replicas }}
   selector:
@@ -46,5 +46,11 @@ spec:
               name: {{ .Values.name }}-config
           - secretRef:
               name: {{ .Values.name }}-secret
+        env:
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.name }}-secret
+                key: postgres_password
         ports:
         - containerPort: {{ .Values.container.containerPort }}
