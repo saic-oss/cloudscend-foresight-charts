@@ -1,0 +1,60 @@
+replicas: 1
+name: quicksight
+namespace: quicksight
+
+spec:
+  containers:
+    imagePullPolicy: Always
+    image: quicksight
+    ports:
+      containerPort: 8089
+env:
+  awsAccountId: "358354085340"
+  dbInstanceId: "appmodforesightdev-0"
+  dbUser: "foresight"
+  dbName: "quicksight"
+  techDebtDataSetId: "f48fdf68-2785-42f7-9b0a-5221d8d51131"
+  techDebtDataSetName: "technical_debt_view"
+  techDebtPhysicalTableMap:
+    TechnicalDebtView:
+      CustomSql:
+        DataSourceArn: "arn:aws:quicksight:us-east-1:358354085340:datasource/c9717a50-53bd-4125-bd41-63904419f1ab"
+        Name: "TechnicalDebtView"
+        SqlQuery: "SELECT * FROM public.technical_debt_view LIMIT 100"
+        Columns:
+          - Name: "Application Name"
+            Type: "STRING"
+          - Name: "CAST HL Tech Debt"
+            Type: "DECIMAL"
+          - Name: "Sonarqube Tech Debt"
+            Type: "DECIMAL"
+          - Name: "Date"
+            Type: "DATE"
+  dashboardId: "7d52b57c-955f-4a64-bf7c-3924ce54d890"
+  dashboardName: "Foresight Dashboard"
+  sourceEntity:
+    SourceAnalysis:
+      Arn: "arn:aws:quicksight:us-east-1:358354085340:analysis/02dd1b45-e405-405e-8669-db978385a316"
+      DataSetReferences:
+        - DataSetPlaceholder: "Technical Debt"
+          DataSetArn: "arn:aws:quicksight:us-east-1:123456789012:dataset/f48fdf68-2785-42f7-9b0a-5221d8d51131"
+  region: "us-east-1"
+secret:
+  db_password: ""
+
+## Edit this to match your keycloak
+client_secret: |
+  {
+    "web": {
+          "issuer": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud",
+          "auth_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/auth",
+          "client_id": "superset",
+          "client_secret": "",
+          "redirect_urls": [
+              "http://localhost:8088/*"
+          ],
+          "userinfo_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/userinfo",
+          "token_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/token",
+          "token_introspection_uri": "https://keycloak-dev.c1d.saicappmod.com/auth/realms/TCloud/protocol/openid-connect/token/introspect"
+      }
+  }

@@ -1,0 +1,44 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: quicksight-setup
+spec:
+  template:
+    spec:
+      serviceAccountName: quicksight-sa
+      containers:
+      - name: aws-cli
+        image: amazon/aws-cli
+        command:
+          - /bin/sh
+          - -c
+          - |
+            set -e  # Stop execution if any command fails
+            echo "Creating AWS Data Source..."
+            aws quicksight create-data-source --aws-account-id {{ .Values.env.awsAccountId }} \
+              --data-source-id my-rds-source \
+              --name "MyRDS" \
+              --type RDS_MYSQL \
+              --data-source-parameters '{"RdsParameters": {"InstanceId":"{{ .Values.env.dbInstanceId }}","Database":"{{ .Values.env.dbName }}"}}' \
+              --credentials '{"CredentialPair": {"Username": "{{ .Values.env.dbUser }}", "Password": "{{ .Values.secret.dbPassword }}"}}'
+
+            echo "Creating AWS Data Set..."
+            aws quicksight create-data-set \
+              --aws-account-id {{ .Values.env.awsAccountId }} \
+              --data-set-id {{ .Values.env.techDebtDataSetId }} \
+              --name "{{ .Values.env.techDebtDataSetName }}" \
+              --physical-table-map '{{ .Values.env.techDebtPhysicalTableMap | toJson }}'
+
+            echo "Creating AWS Dashboard..."
+            aws quicksight create-dashboard \
+              --aws-account-id {{ .Values.env.awsAccountId }} \
+              --dashboard-id {{ .Values.env.dashboardId }} \
+              --name "{{ .Values.env.dashboardName }}" \
+              --source-entity '{{ .Values.env.sourceEntity | toJson }}'
+
+            echo "QuickSight setup completed successfully."
+        env:
+        - name: AWS_DEFAULT_REGION
+          value: "{{ .Values.env.region }}"
+      restartPolicy: OnFailure
+  backoffLimit: 1
