@@ -4,17 +4,8 @@ description: A Helm chart for the AWS QuickSight service
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 1.0.2
+version: 1.0.3
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: "1.0"
-
-dependencies:
-  - name: postgresql
-    version: 10.14.4
-    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
-  - name: redis
-    version: 17.3.17
-    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
-    condition: redis.enabled
