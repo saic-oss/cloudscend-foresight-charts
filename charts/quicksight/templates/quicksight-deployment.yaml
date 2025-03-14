@@ -23,7 +23,7 @@ spec:
           image: "{{ .Values.spec.containers.image }}"
           env:
             - name: AWS_ACCOUNT_ID
-              value: "{{ .Values.env.awsAccountId }}"
+              value: {{ .Values.env.awsAccountId | quote }}
             - name: DB_INSTANCE_ID
               value: "{{ .Values.env.dbInstanceId }}"
             - name: DB_USER
