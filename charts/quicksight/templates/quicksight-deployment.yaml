@@ -43,5 +43,5 @@ spec:
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: dbPassword
+                  key: db_password
                   name: {{ .Values.name }}-secret
