@@ -16,95 +16,92 @@ data:
 
 
     ## CREATE COMPANY
-    curl -k --location --request POST $CAST_URL'/WS/businessUnits' \
+    curl -k --location --request POST $CAST_URL'/WS2/company' \
     --header 'Authorization: Basic '$AUTH_HEADER \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "name": "SAIC",
-        "activeUntil": {
-            "time": 1924961724127
-        },
-        "origin": "undefined",
-        "address": {
-            "country": "US"
-        },
-        "benchmarkable": true,
-        "clientRef": "SAIC",
-        "displayConfiguration": {
-            "elementsToHide": [
-                "logo"
-            ],
-            "logoUrl": null
-        },
-        "maxApplication": "99999",
-        "passwordCheckConfiguration": [
-            "containCharacter",
-            "containNumeric",
-            "containLowerCase",
-            "containUpperCase"
+    "name": "SAIC",
+    "activeUntil": 1924961724127,
+    "maxApplications": "99999",
+    "benchmarkable": true,
+    "appLimited": false,
+    "passwordSecurity": [
+        "containCharacter",
+        "containNumeric",
+        "containLowerCase",
+        "containUpperCase"
+    ],
+    "passwordMinLength": "10",
+    "features": [
+        "BUSINESS_UNITS",
+        "CAMPAIGN",
+        "SURVEY",
+        "ALERTS",
+        "BENCHMARK",
+        "FRAMEWORK",
+        "CLOUD_READY",
+        "GREEN_IT",
+        "CVE",
+        "LICENSE_FINGER_PRINT",
+        "OAUTH_TOKEN",
+        "BOM_UPLOAD",
+        "BLIND_USER"
+    ],
+    "displayConfiguration": {
+        "elementsToHide": [
+            "logo"
         ],
-        "passwordMinLength": "10",
-        "features": [
-            "BUSINESS_UNITS",
-            "CAMPAIGN",
-            "SURVEY",
-            "ALERTS",
-            "BENCHMARK",
-            "FRAMEWORK",
-            "CLOUD_READY",
-            "CVE",
-            "LICENSE_FINGER_PRINT",
-            "OAUTH_TOKEN",
-            "BLIND_USER"
-        ],
-        "cloudPlatformRecommendationType": [
-            "all"
-        ]
-    }'
+        "logoUrl": ""
+    },
+    "cloudPlatformRecommendationType": [
+        "all"
+    ],
+    "address": {
+        "country": {
+        "id": 1,
+        "shortCode": "US",
+        "display": "United States"
+        }
+    },
+    "profile": "trial",
+    "status": "active",
+    "properties": [
+        {
+            "name": "Customer Reference",
+            "value": ""
+        }
+    ]
+}'
 
     ## CREATE USERS
-    curl -k --location --request POST $CAST_URL'/WS/users' \
+    curl -k --location --request POST $CAST_URL'/WS2/domains/2/users' \
     --header 'content-type: application/json' \
     --header 'Authorization: Basic '$AUTH_HEADER \
-    --data-raw '{
-        "status": "invited",
-        "firstName": "sage-highlight",
-        "lastName": "manager",
-        "emails": [
-            {
-                "email": "sage-highlight-manager@saic.com"
-            }
-        ],
-        "companyRoles": [
-            {
-                "role": "portfolioManager",
-                "userId": 2,
-                "businessUnitId": 2,
-                "selected": true
-            }
-        ]
-    }'
-    curl -k --location --request POST $CAST_URL'/WS/users' \
-    --header 'content-type: application/json' \
-    --header 'Authorization: Basic '$AUTH_HEADER \
-    --data-raw '{
-        "status": "invited",
-        "firstName": "sage-highlight",
-        "lastName": "viewer",
-        "emails": [
-            {
-                "email": "sage-highlight-viewer@saic.com"
-            }
-        ],
-        "companyRoles": [
-            {
-                "role": "resultViewer",
-                "userId": 3,
-                "businessUnitId": 2,
-                "selected": true
-            }
-        ]
-    }'
+    --data-raw '[{
+    "status": "invited",
+    "firstName": "sage-highlight",
+    "lastName": "manager",
+    "email": "sage-highlight-manager@saic.com",
+    "roles": [
+        {
+        "domain_id": 2,
+        "role": "manager"
+        }
+    ]
+},
+{
+    "status": "invited",
+    "firstName": "sage-highlight",
+    "lastName": "viewer",
+    "email": "sage-highlight-viewer@saic.com",
+    "roles": [
+        {
+        "domain_id": 2,
+        "role": "viewer"
+        }
+    ]
+}
+]'
 
 
     ## SET USER PASSWORD
